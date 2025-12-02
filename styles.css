@@ -27,6 +27,16 @@
     --color-burdeos-dark: #5A1412;
     --color-focus-outline: #FFD067;
     
+    /* Gold gradient colors for decorations */
+    --gold-light: #D4AF37;
+    --gold-medium: #C4A052;
+    --gold-dark: #B8860B;
+    
+    /* Hero landing colors */
+    --hero-burgundy-light: #8B1A1A;
+    --hero-burgundy-medium: #6B0F0F;
+    --hero-burgundy-dark: #4A0A0A;
+    
     /* Legacy mappings */
     --vino-profundo: #6F1A17;
     --marron-oscuro: #44231D;
@@ -364,6 +374,177 @@ p, li {
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
     background-size: cover;
     opacity: 0.3;
+}
+
+/* ===========================
+   HERO LANDING STYLE
+   =========================== */
+
+.hero-landing {
+    min-height: 100vh;
+    margin-top: 80px;
+    background: radial-gradient(ellipse at center, var(--hero-burgundy-light) 0%, var(--hero-burgundy-medium) 40%, var(--hero-burgundy-dark) 100%);
+    overflow: hidden;
+    border-bottom: none;
+}
+
+.hero-landing::before {
+    display: none;
+}
+
+/* Gold diagonal corner decorations */
+.corner-decoration {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    z-index: 5;
+}
+
+.corner-top-left {
+    top: 0;
+    left: 0;
+}
+
+.corner-top-left::before,
+.corner-top-left::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-medium) 50%, var(--gold-dark) 100%);
+    transform-origin: left top;
+}
+
+.corner-top-left::before {
+    width: 180px;
+    height: 4px;
+    top: 50px;
+    left: -30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.corner-top-left::after {
+    width: 180px;
+    height: 4px;
+    top: 65px;
+    left: -30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.corner-bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.corner-bottom-right::before,
+.corner-bottom-right::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-medium) 50%, var(--gold-dark) 100%);
+    transform-origin: right bottom;
+}
+
+.corner-bottom-right::before {
+    width: 180px;
+    height: 4px;
+    bottom: 50px;
+    right: -30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.corner-bottom-right::after {
+    width: 180px;
+    height: 4px;
+    bottom: 65px;
+    right: -30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.hero-landing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 10;
+    padding: 2rem;
+}
+
+.hero-brand-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: 0.1em;
+    text-shadow: 4px 4px 0px var(--hero-burgundy-dark), 
+                 8px 8px 0px rgba(74, 10, 10, 0.5);
+    margin-bottom: 3rem;
+    line-height: 1;
+}
+
+.hero-logo-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: var(--hero-burgundy-light);
+    border: 5px solid #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 3px var(--hero-burgundy-light);
+}
+
+.logo-inner {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon {
+    width: 140px;
+    height: 140px;
+}
+
+@media (max-width: 768px) {
+    .hero-landing {
+        min-height: calc(100vh - 80px);
+    }
+    
+    .hero-brand-title {
+        font-size: clamp(3rem, 10vw, 6rem);
+        letter-spacing: 0.05em;
+    }
+    
+    .hero-logo-circle {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .logo-inner {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .logo-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .corner-decoration {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .corner-top-left::before,
+    .corner-top-left::after,
+    .corner-bottom-right::before,
+    .corner-bottom-right::after {
+        width: 120px;
+    }
 }
 
 .hero-overlay {

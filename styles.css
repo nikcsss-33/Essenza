@@ -27,6 +27,16 @@
     --color-burdeos-dark: #5A1412;
     --color-focus-outline: #FFD067;
     
+    /* Gold gradient colors for decorations */
+    --gold-light: #D4AF37;
+    --gold-medium: #C4A052;
+    --gold-dark: #B8860B;
+    
+    /* Hero landing colors */
+    --hero-burgundy-light: #8B1A1A;
+    --hero-burgundy-medium: #6B0F0F;
+    --hero-burgundy-dark: #4A0A0A;
+    
     /* Legacy mappings */
     --vino-profundo: #6F1A17;
     --marron-oscuro: #44231D;
@@ -373,7 +383,7 @@ p, li {
 .hero-landing {
     min-height: 100vh;
     margin-top: 80px;
-    background: radial-gradient(ellipse at center, #8B1A1A 0%, #6B0F0F 40%, #4A0A0A 100%);
+    background: radial-gradient(ellipse at center, var(--hero-burgundy-light) 0%, var(--hero-burgundy-medium) 40%, var(--hero-burgundy-dark) 100%);
     overflow: hidden;
     border-bottom: none;
 }
@@ -399,7 +409,7 @@ p, li {
 .corner-top-left::after {
     content: '';
     position: absolute;
-    background: linear-gradient(135deg, #D4AF37 0%, #C4A052 50%, #B8860B 100%);
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-medium) 50%, var(--gold-dark) 100%);
     transform-origin: left top;
 }
 
@@ -430,7 +440,7 @@ p, li {
 .corner-bottom-right::after {
     content: '';
     position: absolute;
-    background: linear-gradient(135deg, #D4AF37 0%, #C4A052 50%, #B8860B 100%);
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-medium) 50%, var(--gold-dark) 100%);
     transform-origin: right bottom;
 }
 
@@ -468,7 +478,7 @@ p, li {
     font-weight: 900;
     color: #FFFFFF;
     letter-spacing: 0.1em;
-    text-shadow: 4px 4px 0px #4A0A0A, 
+    text-shadow: 4px 4px 0px var(--hero-burgundy-dark), 
                  8px 8px 0px rgba(74, 10, 10, 0.5);
     margin-bottom: 3rem;
     line-height: 1;
@@ -478,12 +488,12 @@ p, li {
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    background: #8B1A1A;
+    background: var(--hero-burgundy-light);
     border: 5px solid #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 3px #8B1A1A;
+    box-shadow: 0 0 0 3px var(--hero-burgundy-light);
 }
 
 .logo-inner {

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essenza Barcelona | Boutique Passeig de Gràcia</title>
+    <link rel="stylesheet" href="../../../styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .map-container { height: 400px; width: 100%; margin: 2rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .store-location { background: rgba(180, 117, 50, 0.1); border: 2px solid #b47532; padding: 1rem; margin: 1rem 0; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-logo">
+                    <h1 class="logo">ESSENZA</h1>
+                    <p class="logo-subtitle">Bellezza Italiana</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../../../index.html" class="nav-link">← Volver al Inicio</a></li>
+                    <li><a href="../../../mas-tiendas.html" class="nav-link">Más Tiendas</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" style="background: linear-gradient(135deg, #b47532 0%, #790000 100%); min-height: 50vh;">
+        <div class="hero-content">
+            <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <h2 class="hero-title">Boutique Barcelona</h2>
+            <div style="position: relative; width: 100%; height: 8px; margin: 1.5rem auto;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <p class="hero-subtitle">La Ciudad Condal</p>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <section class="about" style="padding: 100px 0;">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Barcelona - La Ciudad Condal</h2>
+                <p class="about-text" style="text-align: left; font-size: 1.1rem; line-height: 1.8;">En el corazón modernista de Barcelona, donde Gaudí encuentra la elegancia italiana, nuestra boutique Essenza representa la fusión perfecta entre la innovación catalana y la artesanía italiana. Somos el destino de referencia para quienes buscan fragancias que capturan la esencia creativa y mediterránea de la capital catalana.</p>
+
+                <div style="background: #FCE4C8; padding: 2.5rem; border-left: 4px solid #790000; margin: 2rem 0;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Historia de Nuestra Boutique</h3>
+                    <p style="color: #501010; line-height: 1.8;">Desde nuestra apertura en 2025, Essenza Barcelona se ha convertido en el epicentro de la perfumería innovadora en el Mediterráneo. Inspirados por la arquitectura modernista de Gaudí y la precisión italiana, hemos creado un santuario donde la creatividad catalana se encuentra con la belleza italiana.</p>
+                </div>
+
+                <div class="store-location">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación Modernista</h3>
+                    <p style="color: #501010; margin-bottom: 1rem;">Situada en el corazón del Passeig de Gràcia, la avenida más elegante de Barcelona, nuestra boutique ofrece acceso conveniente tanto para residentes locales como para visitantes internacionales. A pasos de la Casa Batlló y con vistas al Park Güell.</p>
+                    <div id="map" class="map-container"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Información de Contacto</h3>
+                        <p style="color: #501010;">
+                            <strong>Dirección:</strong> Passeig de Gràcia, 78<br>Barcelona, 08008, España<br>
+                            <strong>Teléfono Principal:</strong> +34 93 487 1234<br>
+                            <strong>Email:</strong> barcelona@essenza.com<br>
+                            <strong>Gerente:</strong> Montserrat Vidal
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Horarios de Atención</h3>
+                        <p style="color: #501010;">
+                            <strong>Lunes - Viernes:</strong> 10:00 - 20:00<br>
+                            <strong>Sábado:</strong> 10:00 - 21:00<br>
+                            <strong>Domingo:</strong> 11:00 - 19:00<br>
+                            <em style="font-size: 0.9rem;">Horarios extendidos durante temporada turística</em>
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Servicios Especializados</h3>
+                        <ul style="color: #501010; list-style: none; padding-left: 0;">
+                            <li>✓ Asesoría multicultural multilingüe (catalán/español/inglés)</li>
+                            <li>✓ Análisis de piel con técnicas mediterráneas tradicionales</li>
+                            <li>✓ Creación de fragancias personalizadas inspiradas en Gaudí</li>
+                            <li>✓ Servicio de entrega express por toda Cataluña</li>
+                            <li>✓ Eventos culturales y lanzamientos modernistas</li>
+                            <li>✓ Consultoría para eventos sociales y celebraciones</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div style="background: #FCE4C8; padding: 2.5rem; border-left: 4px solid #790000; ">
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Colección Mediterránea</h3>
+                        <p style="color: #501010; line-height: 1.8; margin-bottom: 1rem;">Nuestra colección exclusiva captura la esencia de Barcelona, fusionando aromas mediterráneos con notas innovadoras que evocan la creatividad modernista y el calor del mar.</p>
+                        <ul style="color: #501010; list-style: none; padding-left: 0;">
+                            <li>• "Sagrada Familia" - Notas arquitectónicas y ámbar</li>
+                            <li>• "Barceloneta" - Acuerdos marinos y sal mediterránea</li>
+                            <li>• "Park Güell" - Especias creativas y flores modernistas</li>
+                        </ul>
+                    </div>
+                    <div style="background: #FCE4C8; padding: 2.5rem; border-left: 4px solid #790000; ">
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Experiencias Modernistas</h3>
+                        <p style="color: #501010; line-height: 1.8; margin-bottom: 1rem;">Descubre nuestros servicios premium diseñados para la élite barcelonesa:</p>
+                        <ul style="color: #501010; list-style: none; padding-left: 0;">
+                            <li>• Sesiones de cata olfativa con maridaje catalán</li>
+                            <li>• Talleres de creación de perfumes con ingredientes locales</li>
+                            <li>• Eventos de cultura catalana y modernismo</li>
+                            <li>• Consultoría de imagen para eventos creativos</li>
+                            <li>• Servicio de fragancias temáticas por estaciones</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #790000; color: white; padding: 2rem; margin-top: 3rem; text-align: center;">
+                    <h3 style="font-family: var(--font-primary); margin-bottom: 1rem;">Testimonios de Nuestros Clientes</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                        <blockquote style="font-style: italic; position: relative;">
+                            <p>"Essenza Barcelona ha capturado la creatividad catalana en sus fragancias. Cada aroma es una obra de arte olfativa."</p>
+                            <cite style="display: block; margin-top: 1rem; font-weight: bold;">- Maria V., Arquitecta</cite>
+                        </blockquote>
+                        <blockquote style="font-style: italic; position: relative;">
+                            <p>"La fusión de innovación modernista y elegancia italiana crea experiencias que trascienden el tiempo."</p>
+                            <cite style="display: block; margin-top: 1rem; font-weight: bold;">- Jordi M., Empresario</cite>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 2rem;">¿Listo para una Experiencia Modernista?</h3>
+                    <a href="../../../index.html#contacto" class="btn btn-primary" style="margin-right: 1rem;">Reservar Cita Creativa</a>
+                    <a href="../../../index.html#productos" class="btn btn-secondary">Explorar Nuestra Colección Mediterránea</a>
+                    <div style="margin-top: 2rem;">
+                        <p style="color: #501010; font-size: 0.9rem;">¿Prefieres visitarnos sin cita previa? Nuestros expertos multiculturales estarán encantados de atenderte en catalán, español e inglés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Essenza. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([41.3851, 2.1734], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        const marker = L.marker([41.3851, 2.1734]).addTo(map);
+        marker.bindPopup('<b>Essenza Barcelona</b><br>Passeig de Gràcia, 78<br>Barcelona, España').openPopup();
+
+        const circle = L.circle([41.3851, 2.1734], {
+            color: '#790000',
+            fillColor: '#FCE4C8',
+            fillOpacity: 0.2,
+            radius: 100
+        }).addTo(map);
+    </script>
+    <script src="../../../script.js"></script>
+</body>
+</html>

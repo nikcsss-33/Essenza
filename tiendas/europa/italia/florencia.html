@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essenza Florencia | Boutique Via de' Tornabuoni</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .map-container {
+            height: 400px;
+            width: 100%;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .store-location {
+            background: rgba(121, 0, 0, 0.1);
+            border: 2px solid #790000;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-logo">
+                    <h1 class="logo">ESSENZA</h1>
+                    <p class="logo-subtitle">Bellezza Italiana</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../../index.html" class="nav-link">← Volver al Inicio</a></li>
+                    <li><a href="../../index.html#tiendas" class="nav-link">Otras Tiendas</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Store Hero -->
+    <section class="hero" style="background: #790000; min-height: 50vh;">
+        <div class="hero-content">
+            <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <h2 class="hero-title">Boutique Florencia</h2>
+            <div style="position: relative; width: 100%; height: 8px; margin: 1.5rem auto;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <p class="hero-subtitle">El Renacimiento de la Belleza Italiana</p>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Store Details -->
+    <section class="about" style="padding: 100px 0;">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Florencia - La Cuna del Renacimiento</h2>
+                <p class="about-text" style="text-align: left; max-width: 100%;">
+                    En el corazón del Renacimiento italiano, nuestra boutique en Via de' Tornabuoni representa la esencia
+                    misma del lujo florentino. Rodeada de palacios históricos y galerías de arte, esta tienda es un homenaje
+                    a los grandes maestros del arte y la artesanía que hicieron de Florencia el centro cultural del mundo
+                    durante el siglo XV.
+                </p>
+
+                <div class="store-location">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación Exacta</h3>
+                    <div id="map" class="map-container"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación</h3>
+                        <p style="color: #501010;">
+                            <strong>Dirección:</strong> Via de' Tornabuoni, 25<br>
+                            50123 Firenze, Italia<br>
+                            <strong style="color: var(--color-accent);">Teléfono:</strong> <span style="color: var(--color-accent);">+39 055 212 345</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Horario</h3>
+                        <p style="color: #501010;">
+                            Lunes - Sábado: 10:00 - 19:00<br>
+                            Domingo: 11:00 - 18:00<br>
+                            Temporada turística: Hasta 20:00
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Servicios Exclusivos</h3>
+                        <ul style="color: #501010; list-style: none; padding-left: 0;">
+                            <li>Asesoría con historiadores del arte</li>
+                            <li>Sala de perfumes renacentista</li>
+                            <li>Vistas a la Catedral de Santa María</li>
+                            <li>Entrega por carroza histórica</li>
+                            <li>Fragancias inspiradas en los Medici</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #FCE4C8; padding: 2.5rem; border-left: 4px solid #790000; margin-top: 3rem;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Experiencia Florentina</h3>
+                    <p style="color: #501010; line-height: 1.8;">
+                        La boutique de Florencia es un viaje al corazón del Renacimiento. Nuestros perfumistas han recreado
+                        fragancias inspiradas en los grandes maestros: notas florales que recuerdan los jardines de los
+                        Medici, aromas amaderados que evocan los talleres de los artesanos, y esencias orientales que
+                        llegaron a través de las rutas comerciales de la familia más poderosa de Florencia.
+                    </p>
+                    <p style="color: #501010; line-height: 1.8; margin-top: 1rem;">
+                        La colección "Rinascimento" incluye perfumes que llevan los nombres de las obras maestras del
+                        arte florentino: "La Primavera", "El Nacimiento de Venus", "David" - cada uno capturando la
+                        esencia de una época dorada en la historia de la belleza.
+                    </p>
+                </div>
+
+                <div style="margin-top: 3rem; text-align: center;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1.5rem;">Cómo Llegar</h3>
+                    <p style="color: #501010; margin-bottom: 1rem;">
+                        <strong>Autobús:</strong> Líneas C1, C2 - Parada Via de' Tornabuoni<br>
+                        <strong>Tren:</strong> Estación Santa Maria Novella (15 min a pie)<br>
+                        <strong>Aeropuerto:</strong> Florencia Peretola - 25 min en taxi
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="../../index.html#contacto" class="btn btn-primary">Reservar Cita</a>
+                    <a href="../../index.html#productos" class="btn btn-secondary" style="margin-left: 1rem;">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Essenza. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize map centered on Florence
+        const map = L.map('map').setView([43.7696, 11.2558], 15);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add marker for the store
+        const marker = L.marker([43.7701, 11.2524]).addTo(map);
+        marker.bindPopup('<b>Essenza Florencia</b><br>Via de\' Tornabuoni, 25<br>Florencia, Italia').openPopup();
+
+        // Add circle to show approximate location
+        const circle = L.circle([43.7701, 11.2524], {
+            color: '#790000',
+            fillColor: '#b47532',
+            fillOpacity: 0.2,
+            radius: 100
+        }).addTo(map);
+    </script>
+    <script src="../../script.js"></script>
+</body>
+</html>

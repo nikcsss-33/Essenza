@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Servidor - Essenza</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6F1A17 0%, #44231D 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(189, 153, 85, 0.3);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #BD9955;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        .instructions {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .step {
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        .step::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #BD9955;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        code {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 5px 12px;
+            border-radius: 5px;
+            color: #BD9955;
+            font-family: 'Courier New', monospace;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .note {
+            background: rgba(189, 153, 85, 0.2);
+            border-left: 4px solid #BD9955;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .emoji {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">🌐</div>
+        <h1>ESSENZA</h1>
+        <h2>Servidor Web</h2>
+        
+        <div class="instructions">
+            <strong>📋 Instrucciones para iniciar el servidor:</strong>
+            
+            <div class="step">
+                <strong>1.</strong> Abre el terminal integrado de VS Code<br>
+                Presiona: <code>Ctrl + `</code>
+            </div>
+            
+            <div class="step">
+                <strong>2.</strong> Ejecuta uno de estos comandos:<br>
+                <code>python3 -m http.server 8080</code><br>
+                o<br>
+                <code>python3 server.py</code><br>
+                o<br>
+                <code>./start-server.sh</code>
+            </div>
+            
+            <div class="step">
+                <strong>3.</strong> Abre tu navegador en:<br>
+                <code>http://localhost:8080</code>
+            </div>
+        </div>
+        
+        <div class="note">
+            <strong>💡 Nota:</strong> Debido a limitaciones del entorno, el servidor debe iniciarse manualmente desde el terminal. Todos los archivos están listos y actualizados con la nueva estética editorial.
+        </div>
+    </div>
+</body>
+</html>

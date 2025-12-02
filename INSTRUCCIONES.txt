@@ -1,0 +1,16 @@
+# Instrucciones para iniciar Essenza
+# Sitio web de belleza italiana de lujo
+
+## PASO 1: Abrir terminal
+# En VS Code: Ctrl + ` (backtick) o Terminal > New Terminal
+
+## PASO 2: Ir al directorio del proyecto
+cd /workspaces/Essenza
+
+## PASO 3: Iniciar servidor
+python3 -m http.server 8080
+
+## PASO 4: Abrir navegador
+# Ve a: http://localhost:8080
+
+## ¡LISTO! Disfruta del sitio web

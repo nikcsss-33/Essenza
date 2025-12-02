@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicio de Personalización Essenza - Crea productos exclusivos a tu medida">
+    <title>Personalización | Essenza</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Tipografías Serif Elegantes */
+        @font-face {
+            font-family: 'Elephant';
+            src: local('Elephant'), local('Elephant Pro');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            font-family: 'Elephant', 'Baskerville Old Face', 'Georgia', serif !important;
+        }
+
+        /* Paleta Cálida Sofisticada */
+        :root {
+            --vino-profundo: #790000;
+            --marron-oscuro: #501010;
+            --crema-suave: #FFFAF7;
+            --crema-calida: #FCE4C8;
+            --dorado-claro: #FFE88C;
+            --dorado-intenso: #B47532;
+        }
+
+        body {
+            background: var(--crema-suave) !important;
+        }
+
+        /* Líneas doradas delicadas */
+        .golden-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--dorado-intenso), transparent);
+            margin: 2rem 0;
+        }
+
+        .golden-accent {
+            border-top: 1px solid var(--dorado-intenso);
+        }
+
+        /* Espaciado Editorial Amplio */
+        section {
+            padding: 100px 0 !important;
+        }
+
+        .container {
+            max-width: 1200px;
+            padding: 0 60px;
+        }
+
+        /* Bloques planos sin degradados */
+        .option-card {
+            background: white !important;
+            border: 1px solid var(--dorado-intenso) !important;
+            box-shadow: none !important;
+        }
+
+        .option-card:hover {
+            background: var(--crema-calida) !important;
+            box-shadow: 0 2px 8px rgba(121, 0, 0, 0.1) !important;
+        }
+
+        /* Estilos para el configurador de personalización */
+        @media (max-width: 1024px) {
+            .container > div[style*="grid-template-columns: 1fr 400px"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .container > div > div[style*="position: sticky"] {
+                position: relative !important;
+                top: 0 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .customization-step div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            #contactFormSection div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* Animaciones suaves */
+        .option-card {
+            transition: all 0.3s ease !important;
+        }
+
+        .option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(121, 0, 0, 0.15);
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #790000;
+        }
+
+        select, input[type="text"], input[type="email"], input[type="tel"], textarea {
+            transition: border-color 0.3s ease;
+            border: 1px solid #B47532 !important;
+            background: #FFFAF7 !important;
+            font-family: 'Baskerville Old Face', Georgia, serif !important;
+        }
+
+        select:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
+            outline: none;
+            border-color: #790000 !important;
+            box-shadow: 0 0 0 2px rgba(121, 0, 0, 0.1);
+            background: white !important;
+        }
+
+        button {
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-logo">
+                    <h1 class="logo">ESSENZA</h1>
+                    <p class="logo-subtitle">Bellezza Italiana</p>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="index.html#perfumes" class="nav-link">Perfumes</a></li>
+                    <li><a href="personalizacion.html" class="nav-link active">Personalización</a></li>
+                    <li><a href="mas-tiendas.html" class="nav-link">Tiendas</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: #790000; min-height: 60vh; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #B47532;">
+        <div class="hero-content" style="text-align: center; max-width: 900px; padding: 80px 60px;">
+            <div style="width: 120px; height: 1px; background: #FFE88C; margin: 0 auto 2.5rem;"></div>
+            <h2 class="hero-title" style="font-family: 'Elephant', serif; font-size: 3.5rem; font-weight: normal; letter-spacing: 2px; margin-bottom: 1.5rem; color: #FFFAF7;">Servicio de Personalización Femenina</h2>
+            <div style="width: 80px; height: 1px; background: #FFE88C; margin: 0 auto 2rem;"></div>
+            <p class="hero-subtitle" style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 1.3rem; line-height: 1.8; color: #FCE4C8; font-style: italic;">Crea tu perfume exclusivo diseñado especialmente para ti, mujer distinguida y sofisticada</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="personalization" style="padding: 100px 0; background: #FFFAF7;">
+        <div class="container" style="max-width: 1200px; padding: 0 60px;">
+            <div style="text-align: center; margin-bottom: 5rem;">
+                <div style="width: 100px; height: 1px; background: linear-gradient(to right, transparent, #B47532, transparent); margin: 0 auto 2rem;"></div>
+                <h2 class="section-title" style="font-family: 'Elephant', serif; font-size: 2.8rem; color: #790000; font-weight: normal; letter-spacing: 1px; margin-bottom: 1.5rem;">Crea Tu Perfume Único</h2>
+                <div style="width: 60px; height: 1px; background: #FFE88C; margin: 0 auto 2rem;"></div>
+                <p style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 1.15rem; color: #501010; max-width: 750px; margin: 0 auto; line-height: 1.9; font-style: italic;">
+                    Personaliza cada detalle de tu fragancia de lujo. Selecciona las opciones que reflejen tu personalidad y observa cómo se calcula tu precio estimado en tiempo real.
+                </p>
+            </div>
+
+            <!-- Configurador Interactivo -->
+            <div style="display: grid; grid-template-columns: 1fr 420px; gap: 4rem; margin-bottom: 6rem;">
+                <!-- Panel de Opciones -->
+                <div style="background: white; padding: 4rem; border: 1px solid #B47532;">
+                    <div style="text-align: center; margin-bottom: 3rem;">
+                        <div style="width: 80px; height: 1px; background: #B47532; margin: 0 auto 1.5rem;"></div>
+                        <h3 style="font-family: 'Elephant', serif; color: #790000; margin-bottom: 1rem; font-size: 1.8rem; font-weight: normal; letter-spacing: 1px;">Opciones de Personalización</h3>
+                        <div style="width: 50px; height: 1px; background: #FFE88C; margin: 0 auto;"></div>
+                    </div>
+                    
+                    <!-- Paso 1: Tipo de Perfume -->
+                    <div class="customization-step" style="margin-bottom: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid #B47532;">
+                        <h4 style="font-family: 'Elephant', serif; color: #790000; margin-bottom: 2rem; font-size: 1.3rem; font-weight: normal; letter-spacing: 0.5px;">Categoría de Perfume Femenino</h4>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                            <label class="product-option" style="cursor: pointer;">
+                                <input type="radio" name="productType" value="perfume-clasico" data-price="350" style="display: none;">
+                                <div class="option-card" style="border: 1px solid #B47532; padding: 2rem 1.5rem; text-align: center; transition: all 0.3s ease; background: white;">
+                                    <strong style="display: block; font-family: 'Elephant', serif; color: #790000; font-size: 1.15rem; margin-bottom: 0.8rem; font-weight: normal; letter-spacing: 0.5px;">Clásico Elegante</strong>
+                                    <div style="width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;"></div>
+                                    <span style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 0.95rem; color: #501010; font-style: italic;">Desde €350</span>
+                                </div>
+                            </label>
+                            <label class="product-option" style="cursor: pointer;">
+                                <input type="radio" name="productType" value="perfume-floral" data-price="380" style="display: none;">
+                                <div class="option-card" style="border: 1px solid #B47532; padding: 2rem 1.5rem; text-align: center; transition: all 0.3s ease; background: white;">
+                                    <strong style="display: block; font-family: 'Elephant', serif; color: #790000; font-size: 1.15rem; margin-bottom: 0.8rem; font-weight: normal; letter-spacing: 0.5px;">Floral Sofisticado</strong>
+                                    <div style="width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;"></div>
+                                    <span style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 0.95rem; color: #501010; font-style: italic;">Desde €380</span>
+                                </div>
+                            </label>
+                            <label class="product-option" style="cursor: pointer;">
+                                <input type="radio" name="productType" value="perfume-oriental" data-price="420" style="display: none;">
+                                <div class="option-card" style="border: 1px solid #B47532; padding: 2rem 1.5rem; text-align: center; transition: all 0.3s ease; background: white;">
+                                    <strong style="display: block; font-family: 'Elephant', serif; color: #790000; font-size: 1.15rem; margin-bottom: 0.8rem; font-weight: normal; letter-spacing: 0.5px;">Oriental Sensual</strong>
+                                    <div style="width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;"></div>
+                                    <span style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 0.95rem; color: #501010; font-style: italic;">Desde €420</span>
+                                </div>
+                            </label>
+                            <label class="product-option" style="cursor: pointer;">
+                                <input type="radio" name="productType" value="perfume-exclusivo" data-price="500" style="display: none;">
+                                <div class="option-card" style="border: 1px solid #B47532; padding: 2rem 1.5rem; text-align: center; transition: all 0.3s ease; background: white;">
+                                    <strong style="display: block; font-family: 'Elephant', serif; color: #790000; font-size: 1.15rem; margin-bottom: 0.8rem; font-weight: normal; letter-spacing: 0.5px;">Colección Exclusiva</strong>
+                                    <div style="width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;"></div>
+                                    <span style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 0.95rem; color: #501010; font-style: italic;">Desde €500</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Tipo de Bote -->
+                    <div class="customization-step" style="margin-bottom: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid #B47532;">
+                        <h4 style="font-family: 'Elephant', serif; color: #790000; margin-bottom: 2rem; font-size: 1.3rem; font-weight: normal; letter-spacing: 0.5px;">Diseño del Bote / Envase</h4>
+                        <select id="bottleType" name="bottleType" style="width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 1rem; margin-bottom: 1.5rem;">
+                            <option value="0">Estándar Essenza (incluido)</option>
+                            <option value="50">Cristal Clásico (+€50)</option>
+                            <option value="120">Cristal Tallado a Mano (+€120)</option>
+                            <option value="200">Edición Limitada Oro 24K (+€200)</option>
+                            <option value="350">Diseño Exclusivo Murano (+€350)</option>
+                        </select>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="color: #790000; font-weight: 500; margin-bottom: 0.8rem; display: block;">
+                                Tamaño del Envase: <span id="bottleSizeValue" style="color: #b47532; font-weight: 600;">50ml</span>
+                            </label>
+                            <div style="position: relative; padding: 0 5px;">
+                                <input type="range" id="bottleSize" name="bottleSize" min="30" max="100" value="50" step="10" style="width: 100%; height: 6px; background: #FCE4C8; outline: none; -webkit-appearance: none; appearance: none;">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #790000; margin-top: 0.5rem; font-weight: 600; position: relative;">
+                                    <span style="position: absolute; left: 0%; transform: translateX(0%);">30</span>
+                                    <span style="position: absolute; left: 28.5%; transform: translateX(-50%);">40</span>
+                                    <span style="position: absolute; left: 50%; transform: translateX(-50%);">50</span>
+                                    <span style="position: absolute; left: 64.3%; transform: translateX(-50%);">60</span>
+                                    <span style="position: absolute; left: 78.5%; transform: translateX(-50%);">70</span>
+                                    <span style="position: absolute; left: 92.8%; transform: translateX(-50%);">80</span>
+                                    <span style="position: absolute; left: 100%; transform: translateX(-100%);">100</span>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 1.5rem;">
+                                Precio adicional: <strong id="bottleSizePrice" style="color: #790000;">€0</strong>
+                            </p>
+                        </div>
+
+                        <style>
+                            input[type="range"] {
+                                -webkit-appearance: none;
+                                appearance: none;
+                                cursor: pointer;
+                            }
+                            input[type="range"]::-webkit-slider-thumb {
+                                -webkit-appearance: none;
+                                appearance: none;
+                                width: 18px;
+                                height: 18px;
+                                border-radius: 0;
+                                background: #790000;
+                                cursor: pointer;
+                                border: 2px solid #B47532;
+                                box-shadow: none;
+                            }
+                            input[type="range"]::-moz-range-thumb {
+                                width: 18px;
+                                height: 18px;
+                                border-radius: 0;
+                                background: #790000;
+                                cursor: pointer;
+                                border: 2px solid #B47532;
+                                box-shadow: none;
+                            }
+                            input[type="range"]::-webkit-slider-runnable-track {
+                                width: 100%;
+                                height: 6px;
+                                background: #FCE4C8;
+                                border: 1px solid #B47532;
+                            }
+                            input[type="range"]::-moz-range-track {
+                                width: 100%;
+                                height: 6px;
+                                background: #FCE4C8;
+                                border: 1px solid #B47532;
+                            }
+                        </style>
+                    </div>
+
+                    <!-- Paso 3: Aroma / Fragancia -->
+                    <div class="customization-step" style="margin-bottom: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid #B47532;">
+                        <h4 style="font-family: 'Elephant', serif; color: #790000; margin-bottom: 2rem; font-size: 1.3rem; font-weight: normal; letter-spacing: 0.5px;">Composición Aromática</h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Familia Olfativa Principal</label>
+                            <select id="fragranceFamily" name="fragranceFamily" style="width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 1rem;">
+                                <option value="0">Selecciona una familia</option>
+                                <option value="0">Floral (incluido)</option>
+                                <option value="40">Oriental Especiada (+€40)</option>
+                                <option value="60">Amaderada Noble (+€60)</option>
+                                <option value="80">Cítrica Mediterránea (+€80)</option>
+                                <option value="100">Ámbar Exclusivo (+€100)</option>
+                                <option value="150">Oud Árabe Premium (+€150)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="color: #790000; font-weight: 500; margin-bottom: 0.8rem; display: block;">
+                                Concentración de Fragancia: <span id="concentrationValue" style="color: #b47532; font-weight: 600;">15%</span>
+                                <span style="font-size: 0.85rem; color: #666; font-weight: 400;">(Eau de Parfum)</span>
+                            </label>
+                            <div style="position: relative; padding: 0 5px;">
+                                <input type="range" id="concentration" name="concentration" min="5" max="30" value="15" step="5" style="width: 100%; height: 8px; border-radius: 5px; outline: none; -webkit-appearance: none; appearance: none;">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #790000; margin-top: 0.5rem; font-weight: 600; position: relative;">
+                                    <span style="position: absolute; left: 0%; transform: translateX(0%);">5</span>
+                                    <span style="position: absolute; left: 20%; transform: translateX(-50%);">10</span>
+                                    <span style="position: absolute; left: 40%; transform: translateX(-50%);">15</span>
+                                    <span style="position: absolute; left: 60%; transform: translateX(-50%);">20</span>
+                                    <span style="position: absolute; left: 80%; transform: translateX(-50%);">25</span>
+                                    <span style="position: absolute; left: 100%; transform: translateX(-100%);">30</span>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 1.5rem;">
+                                Precio adicional: <strong id="concentrationPrice" style="color: #790000;">€0</strong>
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="color: #790000; font-weight: 500; margin-bottom: 0.8rem; display: block;">
+                                Intensidad del Aroma: <span id="intensityValue" style="color: #b47532; font-weight: 600;">Media</span>
+                            </label>
+                            <div style="position: relative; padding: 0 5px;">
+                                <input type="range" id="intensity" name="intensity" min="1" max="5" value="3" step="1" style="width: 100%; height: 8px; border-radius: 5px; outline: none; -webkit-appearance: none; appearance: none;">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #790000; margin-top: 0.5rem; font-weight: 600; position: relative;">
+                                    <span style="position: absolute; left: 0%; transform: translateX(0%);">1</span>
+                                    <span style="position: absolute; left: 25%; transform: translateX(-50%);">2</span>
+                                    <span style="position: absolute; left: 50%; transform: translateX(-50%);">3</span>
+                                    <span style="position: absolute; left: 75%; transform: translateX(-50%);">4</span>
+                                    <span style="position: absolute; left: 100%; transform: translateX(-100%);">5</span>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.9rem; color: #666; margin-top: 1.5rem;">
+                                Precio adicional: <strong id="intensityPrice" style="color: #790000;">€0</strong>
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Notas Adicionales Premium</label>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.5rem;">
+                                    <input type="checkbox" name="additionalNotes" value="25">
+                                    <span style="color: #333;">Rosa Damascena (+€25)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.5rem;">
+                                    <input type="checkbox" name="additionalNotes" value="30">
+                                    <span style="color: #333;">Jazmín Absoluto (+€30)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.5rem;">
+                                    <input type="checkbox" name="additionalNotes" value="45">
+                                    <span style="color: #333;">Vainilla de Madagascar (+€45)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.5rem;">
+                                    <input type="checkbox" name="additionalNotes" value="55">
+                                    <span style="color: #333;">Iris de Florencia (+€55)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.5rem;">
+                                    <input type="checkbox" name="additionalNotes" value="70">
+                                    <span style="color: #333;">Almizcle Blanco Sintético (+€70)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Etiqueta -->
+                    <div class="customization-step" style="margin-bottom: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid #B47532;">
+                        <h4 style="font-family: 'Elephant', serif; color: #790000; margin-bottom: 2rem; font-size: 1.3rem; font-weight: normal; letter-spacing: 0.5px;">Personalización de Etiqueta</h4>
+                        
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Tipo de Etiqueta</label>
+                            <select id="labelType" name="labelType" style="width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 1rem;">
+                                <option value="0">Estándar Essenza (incluido)</option>
+                                <option value="35">Etiqueta con Tu Nombre (+€35)</option>
+                                <option value="65">Diseño Personalizado Completo (+€65)</option>
+                                <option value="95">Etiqueta Dorada con Relieve (+€95)</option>
+                                <option value="150">Etiqueta Platino con Diamantes Swarovski (+€150)</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Tu Nombre en la Etiqueta (opcional)</label>
+                            <input type="text" id="customName" placeholder="Ej: Isabella Rossi" style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                        </div>
+
+                        <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.8rem; background: #FAF8F5; border-radius: 5px;">
+                            <input type="checkbox" id="colorLabel" name="colorLabel" value="20">
+                            <span style="color: #333;">Etiqueta a Color (+€20)</span>
+                        </label>
+                    </div>
+
+                    <!-- Paso 5: Mensaje Personal -->
+                    <div class="customization-step" style="margin-bottom: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid #B47532;">
+                        <h4 style="font-family: 'Elephant', serif; color: #790000; margin-bottom: 2rem; font-size: 1.3rem; font-weight: normal; letter-spacing: 0.5px;">Mensaje Personal</h4>
+                        
+                        <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.8rem; background: #FAF8F5; border-radius: 5px; margin-bottom: 1rem;">
+                            <input type="checkbox" id="includeMessage" name="includeMessage" value="45">
+                            <span style="color: #333;">Incluir Mensaje Grabado (+€45)</span>
+                        </label>
+
+                        <div id="messageOptions" style="display: none;">
+                            <textarea id="personalMessage" placeholder="Escribe tu mensaje personalizado (máx. 50 caracteres)..." maxlength="50" style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-family: 'Montserrat', sans-serif; resize: vertical; min-height: 80px; margin-bottom: 1rem;"></textarea>
+                            
+                            <select id="messageLocation" name="messageLocation" style="width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 1rem;">
+                                <option value="0">Grabado en el Bote (incluido)</option>
+                                <option value="25">Tarjeta de Lujo Separada (+€25)</option>
+                                <option value="50">Ambos: Grabado + Tarjeta (+€50)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Paso 6: Empaque -->
+                    <div class="customization-step" style="margin-bottom: 2rem;">
+                        <h4 style="font-family: 'Elephant', serif; color: #790000; margin-bottom: 2rem; font-size: 1.3rem; font-weight: normal; letter-spacing: 0.5px;">Empaque de Lujo</h4>
+                        
+                        <select id="packagingType" name="packagingType" style="width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 1rem; margin-bottom: 1rem;">
+                            <option value="0">Caja Estándar Essenza (incluido)</option>
+                            <option value="40">Caja de Terciopelo Premium (+€40)</option>
+                            <option value="80">Cofre de Madera Lacada (+€80)</option>
+                            <option value="150">Estuche de Cuero Italiano (+€150)</option>
+                            <option value="250">Joyero Personalizado con Espejo (+€250)</option>
+                        </select>
+
+                        <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.8rem; background: #FAF8F5; border-radius: 5px; margin-bottom: 0.5rem;">
+                            <input type="checkbox" id="giftWrapping" name="giftWrapping" value="30">
+                            <span style="color: #333;">Envoltorio para Regalo (+€30)</span>
+                        </label>
+
+                        <label style="display: flex; align-items: center; gap: 0.8rem; cursor: pointer; padding: 0.8rem; background: #FAF8F5; border-radius: 5px;">
+                            <input type="checkbox" id="ribbonSeal" name="ribbonSeal" value="20">
+                            <span style="color: #333;">Lazo de Seda con Sello de Cera (+€20)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Panel de Resumen y Precio -->
+                <div style="position: sticky; top: 100px; height: fit-content;">
+                    <div style="background: #790000; padding: 3.5rem 3rem; border: 2px solid #B47532; color: white;">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <div style="width: 60px; height: 1px; background: #FFE88C; margin: 0 auto 1.5rem;"></div>
+                            <h3 style="font-family: 'Elephant', serif; margin: 0 0 1rem; font-size: 1.6rem; font-weight: normal; letter-spacing: 1px;">Resumen de Tu Producto</h3>
+                            <div style="width: 40px; height: 1px; background: #FFE88C; margin: 0 auto;"></div>
+                        </div>
+                        
+                        <div id="summaryContent" style="background: #FCE4C8; padding: 2rem; margin-bottom: 2.5rem; min-height: 220px; border-left: 3px solid #B47532;">
+                            <p style="font-family: 'Baskerville Old Face', Georgia, serif; text-align: center; color: #501010; font-style: italic;">Selecciona las opciones para ver el resumen</p>
+                        </div>
+
+                        <div style="background: #FFFAF7; padding: 2rem; margin-bottom: 2.5rem; border: 1px solid #B47532;">>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <span style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 1rem; color: #501010;">Precio Base:</span>
+                                <span id="basePrice" style="font-family: 'Elephant', serif; font-weight: normal; color: #790000; font-size: 1.1rem;">€0</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #B47532;">
+                                <span style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 1rem; color: #501010;">Personalizaciones:</span>
+                                <span id="customizationPrice" style="font-family: 'Elephant', serif; font-weight: normal; color: #790000; font-size: 1.1rem;">€0</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.5rem;">
+                                <span style="font-family: 'Elephant', serif; font-size: 1.2rem; letter-spacing: 1px; color: #790000;">TOTAL ESTIMADO:</span>
+                                <span id="totalPrice" style="font-family: 'Elephant', serif; font-size: 2.2rem; color: #790000;">€0</span>
+                            </div>
+                        </div>
+
+                        <button id="requestQuote" style="width: 100%; padding: 1.3rem; background: #FFFAF7; color: #790000; border: 2px solid #B47532; font-family: 'Elephant', serif; font-weight: normal; font-size: 1.1rem; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease;">
+                            Solicitar Presupuesto
+                        </button>
+
+                        <p style="font-family: 'Baskerville Old Face', Georgia, serif; font-size: 0.85rem; text-align: center; margin: 1.5rem 0 0; color: #FCE4C8; font-style: italic;">
+                            * El precio final puede variar según disponibilidad y consulta con nuestros expertos
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;">
+                <a href="index.html" class="btn btn-secondary" style="background: white; color: #790000; border: 2px solid #790000; padding: 0.8rem 2rem; text-decoration: none; border-radius: 5px; font-weight: 600; transition: all 0.3s ease;">Volver al Inicio</a>
+                <a href="mas-tiendas.html" class="btn btn-primary" style="background: linear-gradient(135deg, #790000 0%, #b47532 100%); color: white; padding: 0.8rem 2rem; text-decoration: none; border-radius: 5px; font-weight: 600; transition: all 0.3s ease;">Ver Nuestras Tiendas</a>
+            </div>
+
+            <!-- Formulario de Solicitud -->
+            <div id="contactFormSection" style="background: white; padding: 5rem 4rem; border: 1px solid #B47532; margin-top: 6rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div style="width: 100px; height: 1px; background: linear-gradient(to right, transparent, #B47532, transparent); margin: 0 auto 2rem;"></div>
+                    <h3 style="font-family: 'Elephant', serif; color: #790000; margin-bottom: 1.5rem; font-size: 2rem; font-weight: normal; letter-spacing: 1px;">Solicita Tu Presupuesto Detallado</h3>
+                    <div style="width: 60px; height: 1px; background: #FFE88C; margin: 0 auto 1.5rem;"></div>
+                </div>
+                <p style="font-family: 'Baskerville Old Face', Georgia, serif; text-align: center; color: #501010; margin-bottom: 3rem; font-size: 1.05rem; line-height: 1.8; font-style: italic;">
+                    Completa el formulario con tus datos y nos pondremos en contacto contigo en menos de 24 horas con un presupuesto detallado y personalizado.
+                </p>
+                
+                <form id="customizationForm" onsubmit="return handleFormSubmit(event)">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-group">
+                            <label for="name" style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-family: 'Montserrat', sans-serif;">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-family: 'Montserrat', sans-serif;">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-group">
+                            <label for="phone" style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Teléfono *</label>
+                            <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-family: 'Montserrat', sans-serif;">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="store" style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Boutique Preferida</label>
+                            <select id="store" name="store" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-family: 'Montserrat', sans-serif;">
+                                <option value="">Selecciona una boutique</option>
+                                <option value="milan">Milán</option>
+                                <option value="paris">París</option>
+                                <option value="newyork">Nueva York</option>
+                                <option value="london">Londres</option>
+                                <option value="tokyo">Tokio</option>
+                                <option value="dubai">Dubai</option>
+                                <option value="monaco">Mónaco</option>
+                                <option value="beverlyhills">Beverly Hills</option>
+                                <option value="madrid">Madrid</option>
+                                <option value="barcelona">Barcelona</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="preferences" style="color: #790000; font-weight: 500; margin-bottom: 0.5rem; display: block;">Comentarios Adicionales</label>
+                        <textarea id="preferences" name="preferences" rows="4" placeholder="Cuéntanos cualquier detalle adicional sobre tu producto personalizado..." style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-family: 'Montserrat', sans-serif; resize: vertical;"></textarea>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label style="display: flex; align-items: start; cursor: pointer;">
+                            <input type="checkbox" name="privacy" required style="margin-right: 0.8rem; margin-top: 0.2rem;">
+                            <span style="font-size: 0.9rem; color: #666;">Acepto la <a href="#" style="color: #790000; text-decoration: underline;">Política de Privacidad</a> y el tratamiento de mis datos personales *</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #790000 0%, #b47532 100%); color: white; border: none; border-radius: 5px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s ease; font-family: 'Montserrat', sans-serif;">
+                        Enviar Solicitud de Presupuesto
+                    </button>
+                </form>
+
+                <div id="successMessage" style="display: none; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; text-align: center;">
+                    <h4 style="margin: 0 0 0.5rem;">¡Solicitud Enviada con Éxito!</h4>
+                    <p style="margin: 0;">Nos pondremos en contacto contigo en menos de 24 horas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Mostrar mensaje de éxito
+            const form = document.getElementById('customizationForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // Scroll al mensaje
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+            
+            // Opcional: resetear después de 5 segundos
+            setTimeout(() => {
+                form.reset();
+                form.style.display = 'block';
+                successMessage.style.display = 'none';
+            }, 5000);
+            
+            return false;
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ESSENZA</h3>
+                    <p>Belleza italiana de lujo desde 2025</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="perfumes.html">Perfumes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Servicio</h4>
+                    <ul>
+                        <li><a href="personalizacion.html">Personalización</a></li>
+                        <li><a href="mas-tiendas.html">Nuestras Tiendas</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Essenza. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Sistema de Personalización Interactiva con Cálculo de Precio
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const productOptions = document.querySelectorAll('.product-option input[type="radio"]');
+            const includeMessageCheckbox = document.getElementById('includeMessage');
+            const messageOptions = document.getElementById('messageOptions');
+            
+            // Sliders
+            const bottleSizeSlider = document.getElementById('bottleSize');
+            const concentrationSlider = document.getElementById('concentration');
+            const intensitySlider = document.getElementById('intensity');
+            
+            // Actualizar valores de sliders
+            if (bottleSizeSlider) {
+                bottleSizeSlider.addEventListener('input', function() {
+                    document.getElementById('bottleSizeValue').textContent = this.value + 'ml';
+                    const basePrice = this.value > 50 ? (this.value - 50) * 2 : 0;
+                    document.getElementById('bottleSizePrice').textContent = '€' + basePrice;
+                    calculatePrice();
+                });
+            }
+            
+            if (concentrationSlider) {
+                concentrationSlider.addEventListener('input', function() {
+                    const labels = {
+                        5: '5% (Eau de Toilette)',
+                        10: '10% (EDT Intenso)',
+                        15: '15% (Eau de Parfum)',
+                        20: '20% (EDP Intenso)',
+                        25: '25% (Parfum)',
+                        30: '30% (Extrait de Parfum)'
+                    };
+                    document.getElementById('concentrationValue').textContent = labels[this.value] || this.value + '%';
+                    const basePrice = this.value > 15 ? (this.value - 15) * 4 : 0;
+                    document.getElementById('concentrationPrice').textContent = '€' + basePrice;
+                    calculatePrice();
+                });
+            }
+            
+            if (intensitySlider) {
+                intensitySlider.addEventListener('input', function() {
+                    const labels = ['', 'Sutil', 'Ligera', 'Media', 'Intensa', 'Muy Intensa'];
+                    document.getElementById('intensityValue').textContent = labels[this.value];
+                    const basePrice = this.value > 3 ? (this.value - 3) * 20 : 0;
+                    document.getElementById('intensityPrice').textContent = '€' + basePrice;
+                    calculatePrice();
+                });
+            }
+            
+            // Función para calcular el precio total
+            function calculatePrice() {
+                let basePrice = 0;
+                let customizationPrice = 0;
+                let summary = [];
+
+                // Tipo de producto (base)
+                const selectedProduct = document.querySelector('input[name="productType"]:checked');
+                if (selectedProduct) {
+                    basePrice = parseInt(selectedProduct.dataset.price);
+                    const productLabels = {
+                        'perfume-clasico': 'Clásico Elegante',
+                        'perfume-floral': 'Floral Sofisticado',
+                        'perfume-oriental': 'Oriental Sensual',
+                        'perfume-exclusivo': 'Colección Exclusiva'
+                    };
+                    summary.push(`<strong>${productLabels[selectedProduct.value]}</strong>`);
+                }
+
+                // Tipo de bote
+                const bottleType = document.getElementById('bottleType');
+                const bottlePrice = parseInt(bottleType.value);
+                if (bottlePrice > 0) {
+                    customizationPrice += bottlePrice;
+                    summary.push(`• ${bottleType.options[bottleType.selectedIndex].text}`);
+                }
+
+                // Tamaño personalizado
+                if (bottleSizeSlider) {
+                    const size = parseInt(bottleSizeSlider.value);
+                    const sizePrice = size > 50 ? (size - 50) * 2 : 0;
+                    if (sizePrice > 0) {
+                        customizationPrice += sizePrice;
+                    }
+                    summary.push(`• Tamaño: ${size}ml`);
+                }
+
+                // Concentración
+                if (concentrationSlider) {
+                    const concentration = parseInt(concentrationSlider.value);
+                    const concPrice = concentration > 15 ? (concentration - 15) * 4 : 0;
+                    if (concPrice > 0) {
+                        customizationPrice += concPrice;
+                    }
+                    summary.push(`• Concentración: ${concentration}%`);
+                }
+
+                // Intensidad
+                if (intensitySlider) {
+                    const intensity = parseInt(intensitySlider.value);
+                    const intensityPrice = intensity > 3 ? (intensity - 3) * 20 : 0;
+                    if (intensityPrice > 0) {
+                        customizationPrice += intensityPrice;
+                    }
+                    const labels = ['', 'Sutil', 'Ligera', 'Media', 'Intensa', 'Muy Intensa'];
+                    summary.push(`• Intensidad: ${labels[intensity]}`);
+                }
+
+                // Familia olfativa
+                const fragranceFamily = document.getElementById('fragranceFamily');
+                const fragrancePrice = parseInt(fragranceFamily.value);
+                if (fragrancePrice > 0) {
+                    customizationPrice += fragrancePrice;
+                    summary.push(`• ${fragranceFamily.options[fragranceFamily.selectedIndex].text}`);
+                }
+
+                // Notas adicionales
+                const additionalNotes = document.querySelectorAll('input[name="additionalNotes"]:checked');
+                if (additionalNotes.length > 0) {
+                    let notesText = '• Notas: ';
+                    additionalNotes.forEach((note, index) => {
+                        customizationPrice += parseInt(note.value);
+                        const label = note.parentElement.textContent.trim().split('(+')[0].trim();
+                        notesText += (index > 0 ? ', ' : '') + label;
+                    });
+                    summary.push(notesText);
+                }
+
+                // Tipo de etiqueta
+                const labelType = document.getElementById('labelType');
+                const labelPrice = parseInt(labelType.value);
+                if (labelPrice > 0) {
+                    customizationPrice += labelPrice;
+                    summary.push(`• ${labelType.options[labelType.selectedIndex].text}`);
+                }
+
+                // Nombre personalizado
+                const customName = document.getElementById('customName');
+                if (customName.value.trim()) {
+                    summary.push(`• Nombre: "${customName.value}"`);
+                }
+
+                // Etiqueta a color
+                const colorLabel = document.getElementById('colorLabel');
+                if (colorLabel && colorLabel.checked) {
+                    customizationPrice += parseInt(colorLabel.value);
+                    summary.push('• Etiqueta a Color');
+                }
+
+                // Mensaje grabado
+                if (includeMessageCheckbox.checked) {
+                    customizationPrice += parseInt(includeMessageCheckbox.value);
+                    const messageLocation = document.getElementById('messageLocation');
+                    const locationPrice = parseInt(messageLocation.value);
+                    customizationPrice += locationPrice;
+                    
+                    const personalMessage = document.getElementById('personalMessage');
+                    if (personalMessage.value.trim()) {
+                        summary.push(`• Mensaje: "${personalMessage.value}"`);
+                    } else {
+                        summary.push('• Mensaje Personalizado');
+                    }
+                    
+                    if (locationPrice > 0) {
+                        summary.push(`  ${messageLocation.options[messageLocation.selectedIndex].text}`);
+                    }
+                }
+
+                // Tipo de empaque
+                const packagingType = document.getElementById('packagingType');
+                const packagingPrice = parseInt(packagingType.value);
+                if (packagingPrice > 0) {
+                    customizationPrice += packagingPrice;
+                    summary.push(`• ${packagingType.options[packagingType.selectedIndex].text}`);
+                }
+
+                // Envoltorio regalo
+                const giftWrapping = document.getElementById('giftWrapping');
+                if (giftWrapping && giftWrapping.checked) {
+                    customizationPrice += parseInt(giftWrapping.value);
+                    summary.push('• Envoltorio para Regalo');
+                }
+
+                // Lazo de seda
+                const ribbonSeal = document.getElementById('ribbonSeal');
+                if (ribbonSeal && ribbonSeal.checked) {
+                    customizationPrice += parseInt(ribbonSeal.value);
+                    summary.push('• Lazo de Seda con Sello');
+                }
+
+                // Actualizar UI
+                document.getElementById('basePrice').textContent = '€' + basePrice;
+                document.getElementById('customizationPrice').textContent = '€' + customizationPrice;
+                document.getElementById('totalPrice').textContent = '€' + (basePrice + customizationPrice);
+
+                // Actualizar resumen
+                const summaryContent = document.getElementById('summaryContent');
+                if (summary.length > 0) {
+                    summaryContent.innerHTML = summary.map(item => `<p style="margin: 0.5rem 0; font-size: 0.95rem; line-height: 1.6;">${item}</p>`).join('');
+                } else {
+                    summaryContent.innerHTML = '<p style="text-align: center; opacity: 0.8;">Selecciona las opciones para ver el resumen</p>';
+                }
+            }
+
+            // Event Listeners
+            productOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    // Actualizar estilos visuales
+                    document.querySelectorAll('.product-option .option-card').forEach(card => {
+                        card.style.borderColor = '#B47532';
+                        card.style.background = 'white';
+                    });
+                    this.parentElement.querySelector('.option-card').style.borderColor = '#790000';
+                    this.parentElement.querySelector('.option-card').style.background = '#FCE4C8';
+                    calculatePrice();
+                });
+            });
+
+            // Mostrar/ocultar opciones de mensaje
+            includeMessageCheckbox.addEventListener('change', function() {
+                messageOptions.style.display = this.checked ? 'block' : 'none';
+                calculatePrice();
+            });
+
+            // Listeners para todos los campos
+            document.querySelectorAll('select, input[type="checkbox"], input[type="text"], textarea').forEach(element => {
+                element.addEventListener('change', calculatePrice);
+                if (element.tagName === 'INPUT' && element.type === 'text' || element.tagName === 'TEXTAREA') {
+                    element.addEventListener('input', calculatePrice);
+                }
+            });
+
+            // Botón de solicitar presupuesto
+            document.getElementById('requestQuote').addEventListener('click', function() {
+                const total = document.getElementById('totalPrice').textContent;
+                const selectedProduct = document.querySelector('input[name="productType"]:checked');
+                
+                if (!selectedProduct) {
+                    alert('Por favor, selecciona un tipo de producto para continuar.');
+                    return;
+                }
+
+                // Scroll al formulario de contacto
+                document.getElementById('contactFormSection').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Efectos hover para las tarjetas de producto
+            document.querySelectorAll('.product-option').forEach(option => {
+                const card = option.querySelector('.option-card');
+                option.addEventListener('mouseenter', function() {
+                    if (!this.querySelector('input').checked) {
+                        card.style.transform = 'translateY(-5px)';
+                        card.style.boxShadow = '0 5px 20px rgba(121, 0, 0, 0.15)';
+                    }
+                });
+                option.addEventListener('mouseleave', function() {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = 'none';
+                });
+            });
+
+            // Hover para botón de presupuesto
+            const quoteBtn = document.getElementById('requestQuote');
+            quoteBtn.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
+            });
+            quoteBtn.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

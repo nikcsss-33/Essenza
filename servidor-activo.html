@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servidor Essenza Activo - Puerto 8080</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #790000 0%, #b47532 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            margin: 2rem;
+        }
+        h1 {
+            font-family: 'Elephant', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #b47532;
+        }
+        .success {
+            font-size: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 8px;
+            border: 3px solid #4CAF50;
+            animation: pulse 2s infinite;
+        }
+        .url {
+            font-size: 2rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 3rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: inline-block;
+            border: 2px solid #b47532;
+        }
+        .features {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        .features h3 {
+            color: #b47532;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .features li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .features li::before {
+            content: '-';
+            position: absolute;
+            left: 0;
+            color: #b47532;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: #b47532;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid #b47532;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary {
+            background: #790000;
+            border-color: #790000;
+        }
+        .btn-primary:hover {
+            background: #5a0000;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .troubleshooting {
+            background: rgba(255, 165, 0, 0.1);
+            border: 2px solid #FF9800;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        .troubleshooting h4 {
+            color: #FF9800;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ESSENZA</h1>
+
+        <div class="success">
+            SERVIDOR FUNCIONANDO
+        </div>
+
+        <div class="url">
+            http://localhost:8080
+        </div>
+
+        <div class="features">
+            <h3>Características del Sitio Web</h3>
+            <ul>
+                <li>Efecto 3D interactivo en productos</li>
+                <li>Imágenes SVG de alta calidad</li>
+                <li>Diseño responsivo premium</li>
+                <li>12 boutiques en ciudades de lujo</li>
+                <li>Personalización opcional</li>
+                <li>Formularios funcionales</li>
+                <li>Navegación elegante</li>
+                <li>Paleta de colores italiana</li>
+            </ul>
+        </div>
+
+        <div class="troubleshooting">
+            <h4>Si no funciona:</h4>
+            <p>1. Asegúrate de que el servidor esté corriendo en terminal<br>
+            2. Prueba con otro navegador<br>
+            3. Limpia la caché del navegador (Ctrl+F5)<br>
+            4. Verifica que no haya otro programa usando el puerto 8080</p>
+        </div>
+
+        <a href="index.html" class="btn btn-primary">Ir al Sitio Principal</a>
+        <a href="test-images.html" class="btn">Probar Imágenes 3D</a>
+        <a href="server-status.html" class="btn">Estado del Servidor</a>
+    </div>
+</body>
+</html>

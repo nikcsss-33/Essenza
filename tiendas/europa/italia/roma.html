@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essenza Roma | Boutique Via dei Condotti</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .map-container {
+            height: 400px;
+            width: 100%;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .store-location {
+            background: rgba(121, 0, 0, 0.1);
+            border: 2px solid #790000;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-logo">
+                    <h1 class="logo">ESSENZA</h1>
+                    <p class="logo-subtitle">Bellezza Italiana</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../../index.html" class="nav-link">← Volver al Inicio</a></li>
+                    <li><a href="../../index.html#tiendas" class="nav-link">Otras Tiendas</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Store Hero -->
+    <section class="hero" style="background: #790000; min-height: 50vh;">
+        <div class="hero-content">
+            <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <h2 class="hero-title">Boutique Roma</h2>
+            <div style="position: relative; width: 100%; height: 8px; margin: 1.5rem auto;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <p class="hero-subtitle">El Corazón Histórico de la Belleza Italiana</p>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Store Details -->
+    <section class="about" style="padding: 100px 0;">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Roma - La Ciudad Eterna</h2>
+                <p class="about-text" style="text-align: left; max-width: 100%;">
+                    Nuestra boutique en Via dei Condotti, en el corazón de Roma, combina la magnificencia histórica
+                    de la Ciudad Eterna con el lujo contemporáneo de Essenza. Ubicada a pocos pasos de la Plaza de España,
+                    esta tienda representa la esencia misma de la belleza italiana: atemporal, sofisticada y profundamente arraigada
+                    en la historia y la cultura del Bel Paese.
+                </p>
+
+                <div class="store-location">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación Exacta</h3>
+                    <div id="map" class="map-container"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación</h3>
+                        <p style="color: #501010;">
+                            <strong>Dirección:</strong> Via dei Condotti, 15<br>
+                            00187 Roma, Italia<br>
+                            <strong style="color: var(--color-accent);">Teléfono:</strong> <span style="color: var(--color-accent);">+39 06 678 4321</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Horario</h3>
+                        <p style="color: #501010;">
+                            Lunes - Sábado: 10:00 - 20:00<br>
+                            Domingo: 11:00 - 19:00<br>
+                            Festivos: 12:00 - 18:00
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Servicios Exclusivos</h3>
+                        <ul style="color: #501010; list-style: none; padding-left: 0;">
+                            <li>Asesoría personalizada en italiano</li>
+                            <li>Servicio de perfumista romano</li>
+                            <li>Sala VIP con vista a la Plaza de España</li>
+                            <li>Entrega a domicilio en Roma</li>
+                            <li>Consultas privadas en latín antiguo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #FCE4C8; padding: 2.5rem; border-left: 4px solid #790000; margin-top: 3rem;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Experiencia Romana</h3>
+                    <p style="color: #501010; line-height: 1.8;">
+                        La boutique de Roma ofrece una experiencia única que fusiona el esplendor histórico de la ciudad
+                        con la innovación moderna. Nuestros expertos perfumistas, muchos de ellos descendientes de las
+                        antiguas tradiciones romanas de perfumería, crean fragancias inspiradas en la historia imperial
+                        y el renacimiento artístico.
+                    </p>
+                    <p style="color: #501010; line-height: 1.8; margin-top: 1rem;">
+                        La tienda cuenta con una colección exclusiva de "Fragranze Imperiali" - perfumes inspirados
+                        en emperatrices romanas como Livia Drusilla y Agripina, recreados con ingredientes modernos
+                        pero manteniendo la esencia histórica.
+                    </p>
+                </div>
+
+                <div style="margin-top: 3rem; text-align: center;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1.5rem;">Cómo Llegar</h3>
+                    <p style="color: #501010; margin-bottom: 1rem;">
+                        <strong>Metro:</strong> Línea A - Estación Spagna (2 min a pie)<br>
+                        <strong>Autobús:</strong> Líneas 116, 117, 119 - Parada Via del Corso<br>
+                        <strong>Aeropuerto:</strong> Roma Fiumicino - 45 min en taxi / Roma Ciampino - 30 min
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="../../index.html#contacto" class="btn btn-primary">Reservar Cita</a>
+                    <a href="../../index.html#productos" class="btn btn-secondary" style="margin-left: 1rem;">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Essenza. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize map centered on Rome
+        const map = L.map('map').setView([41.9028, 12.4964], 15);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add marker for the store
+        const marker = L.marker([41.9058, 12.4828]).addTo(map);
+        marker.bindPopup('<b>Essenza Roma</b><br>Via dei Condotti, 15<br>Roma, Italia').openPopup();
+
+        // Add circle to show approximate location
+        const circle = L.circle([41.9058, 12.4828], {
+            color: '#790000',
+            fillColor: '#b47532',
+            fillOpacity: 0.2,
+            radius: 100
+        }).addTo(map);
+    </script>
+    <script src="../../script.js"></script>
+</body>
+</html>

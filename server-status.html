@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servidor Essenza - Puerto 8080</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #790000 0%, #b47532 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 2rem;
+        }
+        h1 {
+            font-family: 'Elephant', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #b47532;
+        }
+        .status {
+            font-size: 1.2rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(0, 255, 0, 0.2);
+            border-radius: 8px;
+            border: 2px solid #4CAF50;
+        }
+        .url {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: inline-block;
+        }
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        .instructions h3 {
+            color: #b47532;
+            margin-bottom: 1rem;
+        }
+        .instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+        .instructions li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .instructions li::before {
+            content: '-';
+            position: absolute;
+            left: 0;
+            color: #b47532;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #b47532;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ESSENZA</h1>
+        <p class="status">Servidor funcionando correctamente</p>
+
+        <div class="url">
+            http://localhost:8080
+        </div>
+
+        <div class="instructions">
+            <h3>Acceso al sitio:</h3>
+            <ul>
+                <li>Abre tu navegador web</li>
+                <li>Ve a la direccion: http://localhost:8080</li>
+                <li>Disfruta del sitio web de lujo italiano</li>
+            </ul>
+        </div>
+
+        <div class="instructions">
+            <h3>Caracteristicas del sitio:</h3>
+            <ul>
+                <li>Efecto 3D interactivo en las imagenes</li>
+                <li>Diseno responsivo para todos los dispositivos</li>
+                <li>12 boutiques en capitales del lujo mundial</li>
+                <li>Personalizacion opcional de productos</li>
+                <li>Formularios funcionales con validacion</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="btn">Ir al Sitio Principal</a>
+        <a href="test-images.html" class="btn">Probar Imagenes</a>
+    </div>
+</body>
+</html>

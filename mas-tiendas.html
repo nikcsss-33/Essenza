@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Más Tiendas - Essenza | Belleza Italiana de Lujo</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { font-family: 'Elephant', serif !important; }
+        
+        .search-container {
+            background: #790000;
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 3rem 1.2rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2C2C2C;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #b47532;
+            box-shadow: 0 0 0 3px rgba(180, 117, 50, 0.2);
+            background: #FFFFFF;
+        }
+
+        .search-input::placeholder {
+            color: #6B6B6B;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #790000;
+            font-size: 1.2rem;
+            pointer-events: none;
+        }
+
+        .stores-all {
+            padding: 4rem 0;
+            background-color: #FFFFFF;
+        }
+
+        .stores-all .container {
+            max-width: 1600px;
+        }
+
+        .stores-all-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .store-all-card {
+            background: #FFFAF7;
+            border-left: 4px solid #790000;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .store-all-card.hidden {
+            display: none;
+        }
+
+        .store-all-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .store-header {
+            background: #790000;
+            color: #FFFAF7;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .store-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            font-weight: normal;
+            color: var(--color-dorado);
+        }
+
+        .store-country {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .store-content {
+            padding: 1.5rem;
+        }
+
+        .store-address {
+            color: #6B6B6B;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .store-phone {
+            color: #790000;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .store-description {
+            color: #2C2C2C;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .store-link {
+            display: inline-block;
+            background: #790000;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .store-link:hover {
+            background: #b47532;
+            transform: translateY(-2px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6B6B6B;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-to-home .btn {
+            background: transparent;
+            color: #790000;
+            border: 2px solid #790000;
+        }
+
+        .back-to-home .btn:hover {
+            background: #790000;
+            color: white;
+        }
+
+        .nav-btn-solid:hover {
+            background: #b47532 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(121, 0, 0, 0.3);
+        }
+
+        .nav-btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-color: #b47532 !important;
+            color: #b47532 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-logo">
+                    <h1 class="logo">ESSENZA</h1>
+                    <p class="logo-subtitle">Bellezza Italiana</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="index.html#productos" class="nav-link">Productos</a></li>
+                    <li><a href="index.html#personalizacion" class="nav-link">Personalización</a></li>
+                    <li><a href="index.html#tiendas" class="nav-link">Tiendas</a></li>
+                    <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-container">
+        <div class="container">
+            <h1 class="section-title" style="color: white; margin-bottom: 1rem;">Todas Nuestras Boutiques</h1>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Descubre nuestras tiendas en las capitales más prestigiosas del mundo</p>
+
+            <div class="search-box">
+                <input type="text" id="storeSearch" class="search-input" placeholder="Buscar por ciudad, país o continente...">
+                <div class="search-icon">🔍</div>
+                <button type="button" id="clearSearch" class="clear-btn" style="position: absolute; right: 3rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: #790000; font-size: 1.2rem; cursor: pointer; display: none;">✕</button>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <a href="index.html#tiendas" class="nav-btn-solid" style="background: #790000; color: white; padding: 0.8rem 2rem; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Volver a Tiendas</a>
+                <a href="index.html" class="nav-btn-outline" style="background: transparent; color: white; padding: 0.8rem 2rem; text-decoration: none; border-radius: 4px; border: 2px solid white; transition: all 0.3s ease; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Volver al Inicio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Stores Section -->
+    <section class="stores-all">
+        <div class="container">
+            <div class="stores-all-grid" id="storesGrid">
+                <!-- Europa -->
+                <div class="store-all-card" data-city="roma rome" data-country="italia" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Roma</h3>
+                        <div class="store-country">Italia - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Via dei Condotti, 15<br>
+                            00187 Roma, Italia
+                        </div>
+                        <a href="tel:+39066781234" class="store-phone">+39 06 678 1234</a>
+                        <div class="store-description">
+                            Ubicada en el corazón de la Ciudad Eterna, nuestra boutique en Via dei Condotti combina la grandeza histórica de Roma con el lujo italiano contemporáneo.
+                        </div>
+                        <a href="tiendas/europa/italia/roma.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="venecia venice" data-country="italia" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Venecia</h3>
+                        <div class="store-country">Italia - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Calle Larga XXII Marzo, 2063<br>
+                            30122 Venezia, Italia
+                        </div>
+                        <a href="tel:+390415221234" class="store-phone">+39 041 522 1234</a>
+                        <div class="store-description">
+                            En el Puente de Rialto, nuestra boutique captura la esencia romántica de Venecia con fragancias que evocan los canales y palacios históricos.
+                        </div>
+                        <a href="tiendas/europa/italia/venecia.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="florencia florence" data-country="italia" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Florencia</h3>
+                        <div class="store-country">Italia - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Via de' Tornabuoni, 73<br>
+                            50123 Firenze, Italia
+                        </div>
+                        <a href="tel:+39055212123" class="store-phone">+39 055 212 123</a>
+                        <div class="store-description">
+                            En el corazón del Renacimiento, nuestra boutique florentina ofrece fragancias inspiradas en los maestros del arte y la arquitectura italiana.
+                        </div>
+                        <a href="tiendas/europa/italia/florencia.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="paris paris" data-country="francia" data-continent="europa">
+                    <div class="store-header">
+                        <h3>París</h3>
+                        <div class="store-country">Francia - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Avenue des Champs-Élysées, 101<br>
+                            75008 Paris, Francia
+                        </div>
+                        <a href="tel:+33145627839" class="store-phone">+33 1 4562 7839</a>
+                        <div class="store-description">
+                            La capital de la moda y el lujo. Nuestra boutique en los Campos Elíseos representa la fusión perfecta entre elegancia francesa e italiana.
+                        </div>
+                        <a href="tiendas/europa/francia/paris.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="niza nice" data-country="francia" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Niza</h3>
+                        <div class="store-country">Francia - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Promenade des Anglais, 37<br>
+                            06000 Nice, Francia
+                        </div>
+                        <a href="tel:+33493881234" class="store-phone">+33 4 9388 1234</a>
+                        <div class="store-description">
+                            Frente al Mediterráneo, nuestra boutique de Niza ofrece fragancias frescas y vibrantes inspiradas en la Costa Azul y el sol del sur de Francia.
+                        </div>
+                        <a href="tiendas/europa/francia/niza.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="lyon" data-country="francia" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Lyon</h3>
+                        <div class="store-country">Francia - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Rue de la République, 85<br>
+                            69002 Lyon, Francia
+                        </div>
+                        <a href="tel:+33478371234" class="store-phone">+33 4 7837 1234</a>
+                        <div class="store-description">
+                            La capital gastronómica de Francia. Nuestra boutique combina la sofisticación culinaria de Lyon con fragancias exquisitas y refinadas.
+                        </div>
+                        <a href="tiendas/europa/francia/lyon.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="marsella" data-country="francia" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Marsella</h3>
+                        <div class="store-country">Francia - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> La Canebière, 48<br>
+                            13001 Marseille, Francia
+                        </div>
+                        <a href="tel:+33491911234" class="store-phone">+33 4 9191 1234</a>
+                        <div class="store-description">
+                            El puerto más antiguo de Francia. Nuestra boutique marsellesa evoca el espíritu mediterráneo con fragancias frescas y aventureras.
+                        </div>
+                        <a href="tiendas/europa/francia/marsella.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="londres london" data-country="reino unido" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Londres</h3>
+                        <div class="store-country">Reino Unido - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Sloane Street, 87<br>
+                            London SW1X 9NZ, UK
+                        </div>
+                        <a href="tel:+442076293546" class="store-phone">+44 20 7629 3546</a>
+                        <div class="store-description">
+                            El corazón financiero de Europa. Nuestra boutique londinense combina la tradición británica con el lujo italiano en el exclusivo Chelsea.
+                        </div>
+                        <a href="tiendas/europa/reino-unido/londres.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="manchester" data-country="reino unido" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Manchester</h3>
+                        <div class="store-country">Reino Unido - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Deansgate, 45<br>
+                            Manchester M3 2BA, UK
+                        </div>
+                        <a href="tel:+441618321234" class="store-phone">+44 161 832 1234</a>
+                        <div class="store-description">
+                            La capital del norte de Inglaterra. Nuestra boutique combina la energía industrial de Manchester con fragancias modernas y sofisticadas.
+                        </div>
+                        <a href="tiendas/europa/reino-unido/manchester.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="birmingham" data-country="reino unido" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Birmingham</h3>
+                        <div class="store-country">Reino Unido - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Bullring & Grand Central, Shop 112<br>
+                            Birmingham B5 4BU, UK
+                        </div>
+                        <a href="tel:+441216431234" class="store-phone">+44 121 643 1234</a>
+                        <div class="store-description">
+                            El centro comercial de las Midlands. Nuestra boutique ofrece una experiencia de compra moderna con fragancias exclusivas y asesoramiento personalizado.
+                        </div>
+                        <a href="tiendas/europa/reino-unido/birmingham.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="edimburgo" data-country="reino unido" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Edimburgo</h3>
+                        <div class="store-country">Reino Unido - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Princes Street, 143<br>
+                            Edinburgh EH2 4BL, UK
+                        </div>
+                        <a href="tel:+441312251234" class="store-phone">+44 131 225 1234</a>
+                        <div class="store-description">
+                            La capital de Escocia. Nuestra boutique combina la majestuosidad de los castillos con fragancias que evocan las Highlands y la historia escocesa.
+                        </div>
+                        <a href="tiendas/europa/reino-unido/edimburgo.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="zurich" data-country="suiza" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Zürich</h3>
+                        <div class="store-country">Suiza - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Bahnhofstrasse, 45<br>
+                            8001 Zürich, Suiza
+                        </div>
+                        <a href="tel:+41442207364" class="store-phone">+41 44 220 7364</a>
+                        <div class="store-description">
+                            La capital financiera de Suiza. Nuestra boutique zuriquesa representa la precisión suiza combinada con la pasión italiana por la belleza.
+                        </div>
+                        <a href="tiendas/europa/suiza/zurich.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="ginebra" data-country="suiza" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Ginebra</h3>
+                        <div class="store-country">Suiza - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Rue du Rhône, 18<br>
+                            1204 Genève, Suiza
+                        </div>
+                        <a href="tel:+41223191234" class="store-phone">+41 22 319 1234</a>
+                        <div class="store-description">
+                            La ciudad de los derechos humanos y el lujo discreto. Nuestra boutique ginebrina ofrece fragancias refinadas junto al lago Lemán.
+                        </div>
+                        <a href="tiendas/europa/suiza/ginebra.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="basilea" data-country="suiza" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Basilea</h3>
+                        <div class="store-country">Suiza - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Freie Strasse, 45<br>
+                            4001 Basel, Suiza
+                        </div>
+                        <a href="tel:+41612691234" class="store-phone">+41 61 269 1234</a>
+                        <div class="store-description">
+                            La ciudad de las artes y la cultura. Nuestra boutique combina el patrimonio artístico de Basilea con fragancias innovadoras y creativas.
+                        </div>
+                        <a href="tiendas/europa/suiza/basilea.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="madrid" data-country="espana" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Madrid</h3>
+                        <div class="store-country">España - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Gran Vía, 45<br>
+                            Madrid, 28013, España
+                        </div>
+                        <a href="tel:+34911234567" class="store-phone">+34 91 123 45 67</a>
+                        <div class="store-description">
+                            El corazón imperial de España. Nuestra boutique combina la grandeza histórica de Madrid con fragancias que evocan la Corte Imperial española.
+                        </div>
+                        <a href="tiendas/europa/espana/madrid.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="barcelona" data-country="espana" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Barcelona</h3>
+                        <div class="store-country">España - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Passeig de Gràcia, 78<br>
+                            Barcelona, 08008, España
+                        </div>
+                        <a href="tel:+34934871234" class="store-phone">+34 93 487 1234</a>
+                        <div class="store-description">
+                            La ciudad condal modernista. Nuestra boutique combina la creatividad de Gaudí con fragancias mediterráneas e innovadoras.
+                        </div>
+                        <a href="tiendas/europa/espana/barcelona.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <!-- Norteamérica -->
+                <div class="store-all-card" data-city="nueva york new york" data-country="estados unidos" data-continent="norteamerica">
+                    <div class="store-header">
+                        <h3>Nueva York</h3>
+                        <div class="store-country">Estados Unidos - Norteamérica</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Fifth Avenue, 725<br>
+                            New York, NY 10022, USA
+                        </div>
+                        <a href="tel:+12125559127" class="store-phone">+1 212 555 9127</a>
+                        <div class="store-description">
+                            La Gran Manzana. Nuestra boutique en la Quinta Avenida representa el epicentro del lujo americano con toques italianos exclusivos.
+                        </div>
+                        <a href="tiendas/america-norte/eeuu/nueva-york.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="beverly hills" data-country="estados unidos" data-continent="norteamerica">
+                    <div class="store-header">
+                        <h3>Beverly Hills</h3>
+                        <div class="store-country">Estados Unidos - Norteamérica</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Rodeo Drive, 459<br>
+                            Beverly Hills, CA 90210, USA
+                        </div>
+                        <a href="tel:+13102745683" class="store-phone">+1 310 274 5683</a>
+                        <div class="store-description">
+                            El corazón de Hollywood. Nuestra boutique en Rodeo Drive atiende a las estrellas y celebridades con fragancias personalizadas y servicios VIP.
+                        </div>
+                        <a href="tiendas/america-norte/eeuu/beverly-hills.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="chicago" data-country="estados unidos" data-continent="norteamerica">
+                    <div class="store-header">
+                        <h3>Chicago</h3>
+                        <div class="store-country">Estados Unidos - Norteamérica</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Magnificent Mile, 900<br>
+                            Chicago, IL 60611, USA
+                        </div>
+                        <a href="tel:+13126421234" class="store-phone">+1 312 642 1234</a>
+                        <div class="store-description">
+                            La Ciudad de los Vientos. Nuestra boutique combina la arquitectura moderna de Chicago con fragancias urbanas y sofisticadas.
+                        </div>
+                        <a href="tiendas/america-norte/eeuu/chicago.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="miami" data-country="estados unidos" data-continent="norteamerica">
+                    <div class="store-header">
+                        <h3>Miami</h3>
+                        <div class="store-country">Estados Unidos - Norteamérica</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Lincoln Road, 1111<br>
+                            Miami Beach, FL 33139, USA
+                        </div>
+                        <a href="tel:+13056741234" class="store-phone">+1 305 674 1234</a>
+                        <div class="store-description">
+                            La Riviera Americana. Nuestra boutique de Miami Beach ofrece fragancias tropicales y frescas perfectas para el estilo de vida playero.
+                        </div>
+                        <a href="tiendas/america-norte/eeuu/miami.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="san francisco" data-country="estados unidos" data-continent="norteamerica">
+                    <div class="store-header">
+                        <h3>San Francisco</h3>
+                        <div class="store-country">Estados Unidos - Norteamérica</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Union Square, 333<br>
+                            San Francisco, CA 94102, USA
+                        </div>
+                        <a href="tel:+14153911234" class="store-phone">+1 415 391 1234</a>
+                        <div class="store-description">
+                            La Ciudad de la Bahía. Nuestra boutique combina la innovación tecnológica de Silicon Valley con fragancias vanguardistas y naturales.
+                        </div>
+                        <a href="tiendas/america-norte/eeuu/san-francisco.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="toronto" data-country="canada" data-continent="norteamerica">
+                    <div class="store-header">
+                        <h3>Toronto</h3>
+                        <div class="store-country">Canadá - Norteamérica</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Queen Street West, 651<br>
+                            Toronto, ON M5V 2B7, Canadá
+                        </div>
+                        <a href="tel:+14165991234" class="store-phone">+1 416 599 1234</a>
+                        <div class="store-description">
+                            La capital multicultural de Canadá. Nuestra boutique refleja la diversidad de Toronto con fragancias que celebran todas las culturas.
+                        </div>
+                        <a href="tiendas/america-norte/canada/toronto.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="vancouver" data-country="canada" data-continent="norteamerica">
+                    <div class="store-header">
+                        <h3>Vancouver</h3>
+                        <div class="store-country">Canadá - Norteamérica</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Robson Street, 1133<br>
+                            Vancouver, BC V6E 1B9, Canadá
+                        </div>
+                        <a href="tel:+16046881234" class="store-phone">+1 604 688 1234</a>
+                        <div class="store-description">
+                            La puerta del Pacífico. Nuestra boutique combina la naturaleza prístina de Vancouver con fragancias frescas y ecológicas.
+                        </div>
+                        <a href="tiendas/america-norte/canada/vancouver.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="montreal" data-country="canada" data-continent="norteamerica">
+                    <div class="store-header">
+                        <h3>Montreal</h3>
+                        <div class="store-country">Canadá - Norteamérica</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Rue Sainte-Catherine, 1455<br>
+                            Montréal, QC H3G 2B5, Canadá
+                        </div>
+                        <a href="tel:+15148451234" class="store-phone">+1 514 845 1234</a>
+                        <div class="store-description">
+                            La ciudad europea de Norteamérica. Nuestra boutique combina el encanto parisino de Montreal con fragancias sofisticadas y culturales.
+                        </div>
+                        <a href="tiendas/america-norte/canada/montreal.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <!-- Asia -->
+                <div class="store-all-card" data-city="tokio" data-country="japon" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Tokio</h3>
+                        <div class="store-country">Japón - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Ginza, 5-chōme-7-4<br>
+                            Chūō City, Tokyo 104-0061, Japón
+                        </div>
+                        <a href="tel:+81335716293" class="store-phone">+81 3 3571 6293</a>
+                        <div class="store-description">
+                            La capital tecnológica del mundo. Nuestra boutique combina la precisión japonesa con el arte italiano de la perfumería.
+                        </div>
+                        <a href="tiendas/asia/japon/tokio.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="osaka" data-country="japon" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Osaka</h3>
+                        <div class="store-country">Japón - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Shinsaibashi, 1-4-3<br>
+                            Chūō-ku, Osaka 542-0085, Japón
+                        </div>
+                        <a href="tel:+81662111234" class="store-phone">+81 6 6211 1234</a>
+                        <div class="store-description">
+                            La capital culinaria de Japón. Nuestra boutique combina la gastronomía de Osaka con fragancias que celebran la cultura y tradiciones locales.
+                        </div>
+                        <a href="tiendas/asia/japon/osaka.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="kyoto" data-country="japon" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Kyoto</h3>
+                        <div class="store-country">Japón - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Nishiki Market, 4-5-6<br>
+                            Kyoto, Kyoto 604-8054, Japón
+                        </div>
+                        <a href="tel:+81755512277" class="store-phone">+81 75 551 2277</a>
+                        <div class="store-description">
+                            La ciudad de las mil tradiciones. Nuestra boutique combina la espiritualidad de Kyoto con fragancias que evocan templos y jardines zen.
+                        </div>
+                        <a href="tiendas/asia/japon/kyoto.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="shanghai" data-country="china" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Shanghai</h3>
+                        <div class="store-country">China - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Nanjing Road, 123<br>
+                            Huangpu District, Shanghai 200001, China
+                        </div>
+                        <a href="tel:+862163501234" class="store-phone">+86 21 6350 1234</a>
+                        <div class="store-description">
+                            La perla de Oriente. Nuestra boutique combina la energía moderna de Shanghai con fragancias inspiradas en la antigua Ruta de la Seda.
+                        </div>
+                        <a href="tiendas/asia/china/shanghai.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="beijing" data-country="china" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Beijing</h3>
+                        <div class="store-country">China - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Wangfujing Street, 268<br>
+                            Dongcheng District, Beijing 100006, China
+                        </div>
+                        <a href="tel:+861065281234" class="store-phone">+86 10 6528 1234</a>
+                        <div class="store-description">
+                            La Ciudad Imperial. Nuestra boutique honra la historia de las dinastías chinas con fragancias que evocan la grandeza de la Ciudad Prohibida.
+                        </div>
+                        <a href="tiendas/asia/china/beijing.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="guangzhou" data-country="china" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Guangzhou</h3>
+                        <div class="store-country">China - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Tianhe Road, 123<br>
+                            Tianhe District, Guangzhou 510630, China
+                        </div>
+                        <a href="tel:+862038801234" class="store-phone">+86 20 3880 1234</a>
+                        <div class="store-description">
+                            La puerta del sur de China. Nuestra boutique combina el comercio tradicional de Guangzhou con fragancias modernas y cosmopolitas.
+                        </div>
+                        <a href="tiendas/asia/china/guangzhou.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <!-- Ciudades originales adicionales -->
+                <div class="store-all-card" data-city="monaco" data-country="monaco" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Mónaco</h3>
+                        <div class="store-country">Mónaco - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Avenue Princesse Grace, 15<br>
+                            98000 Monte-Carlo, Mónaco
+                        </div>
+                        <a href="tel:+37797976254" class="store-phone">+377 9797 6254</a>
+                        <div class="store-description">
+                            El principado del lujo. Nuestra boutique en Mónaco atiende a la élite internacional con servicios exclusivos y fragancias personalizadas.
+                        </div>
+                        <a href="tiendas/monaco.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="dubai" data-country="emiratos arabes unidos" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Dubai</h3>
+                        <div class="store-country">Emiratos Árabes Unidos - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> The Dubai Mall - Fashion Avenue<br>
+                            Downtown Dubai, EAU
+                        </div>
+                        <a href="tel:+97143398752" class="store-phone">+971 4 339 8752</a>
+                        <div class="store-description">
+                            El paraíso del lujo en Oriente Medio. Nuestra boutique combina la opulencia árabe con la elegancia italiana en el Dubai Mall.
+                        </div>
+                        <a href="tiendas/dubai.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="hong kong" data-country="china" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Hong Kong</h3>
+                        <div class="store-country">China - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Canton Road, 3<br>
+                            Tsim Sha Tsui, Hong Kong
+                        </div>
+                        <a href="tel:+85227354918" class="store-phone">+852 2735 4918</a>
+                        <div class="store-description">
+                            La perla de Asia. Nuestra boutique combina la energía vibrante de Hong Kong con fragancias que capturan la esencia de la ciudad.
+                        </div>
+                        <a href="tiendas/hong-kong.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="singapur" data-country="singapur" data-continent="asia">
+                    <div class="store-header">
+                        <h3>Singapur</h3>
+                        <div class="store-country">Singapur - Asia</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> Orchard Road, 2<br>
+                            Singapore 238801
+                        </div>
+                        <a href="tel:+6567352847" class="store-phone">+65 6735 2847</a>
+                        <div class="store-description">
+                            La ciudad jardín del sudeste asiático. Nuestra boutique combina la eficiencia de Singapur con fragancias tropicales y modernas.
+                        </div>
+                        <a href="tiendas/singapur.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+
+                <div class="store-all-card" data-city="cannes" data-country="francia" data-continent="europa">
+                    <div class="store-header">
+                        <h3>Cannes</h3>
+                        <div class="store-country">Francia - Europa</div>
+                    </div>
+                    <div class="store-content">
+                        <div class="store-address">
+                            <strong>Dirección:</strong> La Croisette, 73<br>
+                            06400 Cannes, Francia
+                        </div>
+                        <a href="tel:+33493945217" class="store-phone">+33 4 9394 5217</a>
+                        <div class="store-description">
+                            La capital del cine europeo. Nuestra boutique combina el glamour del Festival de Cannes con fragancias sofisticadas y mediterráneas.
+                        </div>
+                        <a href="tiendas/cannes.html" class="store-link">Ver Tienda</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-results" id="noResults">
+                <h3>No se encontraron tiendas</h3>
+                <p>Intenta con otros términos de búsqueda</p>
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html" class="btn">Volver al Inicio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ESSENZA</h3>
+                    <p>Belleza italiana de lujo desde 2025</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="index.html#productos">Productos</a></li>
+                        <li><a href="index.html#personalizacion">Personalización</a></li>
+                        <li><a href="index.html#tiendas">Tiendas</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Cookies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Recibe nuestras novedades exclusivas</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email" required>
+                        <button type="submit" class="btn btn-secondary">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Essenza. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Función de búsqueda de tiendas
+        document.getElementById('storeSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const storeCards = document.querySelectorAll('.store-all-card');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
+
+            // Dividir el término de búsqueda en palabras
+            const searchWords = searchTerm.split(' ').filter(word => word.length > 0);
+
+            storeCards.forEach(card => {
+                const city = card.dataset.city.toLowerCase();
+                const country = card.dataset.country.toLowerCase();
+                const continent = card.dataset.continent.toLowerCase();
+                const cardText = card.textContent.toLowerCase();
+
+                // Verificar si alguna palabra de búsqueda coincide
+                const matches = searchWords.length === 0 || searchWords.some(word =>
+                    city.includes(word) ||
+                    country.includes(word) ||
+                    continent.includes(word) ||
+                    cardText.includes(word)
+                );
+
+                if (matches) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Mostrar/ocultar mensaje de "no results"
+            if (visibleCount === 0 && searchTerm !== '') {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        });
+
+        // Limpiar búsqueda
+        document.getElementById('clearSearch').addEventListener('click', function() {
+            document.getElementById('storeSearch').value = '';
+            document.getElementById('storeSearch').dispatchEvent(new Event('input'));
+        });
+
+        // Mostrar/ocultar botón de limpiar
+        document.getElementById('storeSearch').addEventListener('input', function() {
+            const clearBtn = document.getElementById('clearSearch');
+            if (this.value.trim() !== '') {
+                clearBtn.style.display = 'block';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

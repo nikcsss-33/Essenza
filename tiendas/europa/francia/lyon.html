@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essenza Lyon | Boutique Rue de la République</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .map-container {
+            height: 400px;
+            width: 100%;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .store-location {
+            background: rgba(121, 0, 0, 0.1);
+            border: 2px solid #790000;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-logo">
+                    <h1 class="logo">ESSENZA</h1>
+                    <p class="logo-subtitle">Bellezza Italiana</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../../index.html" class="nav-link">← Volver al Inicio</a></li>
+                    <li><a href="../../index.html#tiendas" class="nav-link">Otras Tiendas</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Store Hero -->
+    <section class="hero" style="background: #790000; min-height: 50vh;">
+        <div class="hero-content">
+            <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <h2 class="hero-title">Boutique Lyon</h2>
+            <div style="position: relative; width: 100%; height: 8px; margin: 1.5rem auto;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <p class="hero-subtitle">La Capital Gastronómica de Francia</p>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Store Details -->
+    <section class="about" style="padding: 100px 0;">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Lyon - La Ciudad de las Luces</h2>
+                <p class="about-text" style="text-align: left; max-width: 100%;">
+                    En el corazón histórico de Lyon, conocida como "la capital de las luces", nuestra boutique en
+                    Rue de la République combina la rica herencia culinaria y cultural de la ciudad con el lujo
+                    refinado de Essenza. Rodeada de arquitectura renacentista y con vistas al Saône, esta tienda
+                    representa la sofisticación discreta de la burguesía francesa.
+                </p>
+
+                <div class="store-location">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación Exacta</h3>
+                    <div id="map" class="map-container"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación</h3>
+                        <p style="color: #501010;">
+                            <strong>Dirección:</strong> Rue de la République, 45<br>
+                            69002 Lyon, Francia<br>
+                            <strong style="color: var(--color-accent);">Teléfono:</strong> <span style="color: var(--color-accent);">+33 4 7842 5566</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Horario</h3>
+                        <p style="color: #501010;">
+                            Lunes - Sábado: 10:00 - 19:00<br>
+                            Domingo: 11:00 - 18:00<br>
+                            Jueves: Hasta 20:00 (nocturno)
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Servicios Exclusivos</h3>
+                        <ul style="color: #501010; list-style: none; padding-left: 0;">
+                            <li>Asesoría con chefs perfumistas</li>
+                            <li>Sala de degustación olfativa</li>
+                            <li>Vistas a la Basílica de Notre-Dame</li>
+                            <li>Entrega por mensajero privado</li>
+                            <li>Fragancias inspiradas en la gastronomía</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #FCE4C8; padding: 2.5rem; border-left: 4px solid #790000; margin-top: 3rem;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Experiencia Gastronómica</h3>
+                    <p style="color: #501010; line-height: 1.8;">
+                        Lyon, capital mundial de la gastronomía, ha inspirado nuestra colección más innovadora. Nuestros
+                        perfumistas han colaborado con chefs lyoneses para crear fragancias que evocan los sabores
+                        más exquisitos: notas de trufa negra del Périgord, chocolate amargo de Saint-Étienne, y hierbas
+                        frescas de las colinas circundantes.
+                    </p>
+                    <p style="color: #501010; line-height: 1.8; margin-top: 1rem;">
+                        La colección "Les Halles de Lyon" incluye perfumes que llevan los nombres de los productos más
+                        preciados de los mercados bouchons: "Le Beaujolais", "La Noix de Grenoble", "Le Saucisson Brioché" -
+                        cada uno capturando la esencia de la rica tradición culinaria de Lyon.
+                    </p>
+                </div>
+
+                <div style="margin-top: 3rem; text-align: center;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1.5rem;">Cómo Llegar</h3>
+                    <p style="color: #501010; margin-bottom: 1rem;">
+                        <strong>Metro:</strong> Línea A - Estación Cordeliers<br>
+                        <strong>Tranvía:</strong> Línea T1 - Parada Hôtel de Ville<br>
+                        <strong>TGV:</strong> Estación Part-Dieu (10 min en taxi)
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="../../index.html#contacto" class="btn btn-primary">Reservar Cita</a>
+                    <a href="../../index.html#productos" class="btn btn-secondary" style="margin-left: 1rem;">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Essenza. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize map centered on Lyon
+        const map = L.map('map').setView([45.7640, 4.8357], 15);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add marker for the store
+        const marker = L.marker([45.7673, 4.8343]).addTo(map);
+        marker.bindPopup('<b>Essenza Lyon</b><br>Rue de la République, 45<br>Lyon, Francia').openPopup();
+
+        // Add circle to show approximate location
+        const circle = L.circle([45.7673, 4.8343], {
+            color: '#790000',
+            fillColor: '#b47532',
+            fillOpacity: 0.2,
+            radius: 100
+        }).addTo(map);
+    </script>
+    <script src="../../script.js"></script>
+</body>
+</html>

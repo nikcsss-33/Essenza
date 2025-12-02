@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicio de Personalización Essenza - Crea productos exclusivos a tu medida">
+    <title>Personalización | Essenza</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estética Editorial Premium */
+        body {
+            background: var(--color-bg) !important;
+        }
+
+        .golden-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--color-dorado-dark), transparent);
+            margin: 2rem 0;
+        }
+
+        .golden-accent {
+            width: 80px;
+            height: 1px;
+            background: var(--color-dorado);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .golden-accent::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--color-dorado-dark);
+        }
+
+        /* Sistema de Fases */
+        .phase-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border: 1px solid var(--color-dorado-dark);
+            padding: 5rem 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .phase-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-dorado-dark);
+        }
+
+        .phase-number {
+            font-family: var(--font-accent);
+            font-size: 0.85rem;
+            color: var(--color-dorado-dark);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .phase-title {
+            font-family: var(--font-secondary);
+            font-size: 2.2rem;
+            color: var(--color-burdeos);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .phase-description {
+            font-family: var(--font-primary);
+            font-size: 1.05rem;
+            color: var(--color-text-strong);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        /* Opciones de selección */
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .option-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .option-input {
+            display: none;
+        }
+
+        .option-card {
+            border: 1px solid var(--color-dorado-dark);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #FFFFFF;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .option-input:checked + .option-card {
+            background: var(--color-bg-alt);
+            border-color: var(--color-burdeos);
+            border-width: 2px;
+        }
+
+        .option-card:hover {
+            background: var(--color-bg-alt);
+            transform: translateY(-3px);
+        }
+
+        .option-title {
+            font-family: var(--font-secondary);
+            font-size: 1.2rem;
+            color: var(--color-burdeos);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+
+        .option-subtitle {
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            color: var(--color-text-strong);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .option-price {
+            font-family: var(--font-accent);
+            font-size: 0.95rem;
+            color: var(--color-dorado-dark);
+        }
+
+        /* Botones de navegación entre fases */
+        .phase-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-dorado-dark);
+        }
+
+        .btn-phase {
+            font-family: var(--font-accent);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--color-burdeos);
+            background: #FFFFFF;
+            color: var(--color-burdeos);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn-phase:hover {
+            background: var(--color-burdeos-dark);
+            color: #FFFFFF;
+        }
+
+        .btn-phase:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .btn-phase.primary {
+            background: var(--color-burdeos);
+            color: #FFFFFF;
+        }
+
+        .btn-phase.primary:hover {
+            background: var(--color-burdeos-dark);
+        }
+
+        /* Indicador de progreso */
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .progress-step {
+            width: 12px;
+            height: 12px;
+            border: 1px solid var(--color-dorado-dark);
+            background: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active {
+            background: var(--color-burdeos);
+            border-color: var(--color-burdeos);
+        }
+
+        .progress-step.completed {
+            background: var(--color-dorado-dark);
+            border-color: var(--color-dorado-dark);
+        }
+
+        /* Resumen lateral */
+        .summary-panel {
+            position: sticky;
+            top: 100px;
+            background: var(--color-burdeos-dark);
+            border: 2px solid var(--color-dorado-dark);
+            padding: 3rem 2.5rem;
+            color: #FFFFFF;
+        }
+
+        .summary-title {
+            font-family: 'Elephant', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .summary-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 232, 140, 0.3);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-family: var(--font-accent);
+            font-size: 0.8rem;
+            color: var(--color-dorado);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .summary-value {
+            font-family: 'Elephant', serif;
+            font-size: 1.05rem;
+            color: white;
+        }
+
+        .summary-total {
+            background: var(--color-panel);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid var(--color-dorado-dark);
+            text-align: center;
+        }
+
+        .summary-total-label {
+            font-family: var(--font-accent);
+            font-size: 0.9rem;
+            color: var(--color-burdeos);
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .summary-total-price {
+            font-family: var(--font-secondary);
+            font-size: 2rem;
+            color: var(--color-burdeos);
+        }
+
+        /* Hide all phases by default */
+        .phase {
+            display: none;
+        }
+
+        .phase.active {
+            display: block;
+        }
+
+        /* Subtipos de perfume */
+        .subtype-selector {
+            display: none;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-dorado);
+        }
+
+        .subtype-selector.visible {
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--color-dorado-dark);
+            background: var(--color-panel);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            color: var(--color-text-strong);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--color-burdeos);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 2px var(--color-focus-outline);
+        }
+
+        @media (min-width: 1100px) {
+            .customization-main {
+                display: flex;
+                gap: 3rem;
+            }
+            .customization-phases {
+                flex: 2;
+            }
+            .summary-panel {
+                flex: 1;
+                position: sticky;
+                top: 120px;
+                align-self: flex-start;
+                max-width: 380px;
+            }
+        }
+        @media (max-width: 1099px) {
+            .customization-main {
+                display: block;
+            }
+            .summary-panel {
+                position: static;
+                max-width: 100%;
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-logo">
+                    <h1 class="logo">ESSENZA</h1>
+                    <p class="logo-subtitle">Bellezza Italiana</p>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="index.html#perfumes" class="nav-link">Perfumes</a></li>
+                    <li><a href="personalizacion.html" class="nav-link active">Personalización</a></li>
+                    <li><a href="mas-tiendas.html" class="nav-link">Tiendas</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: #790000; min-height: 60vh; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid #B47532;">
+        <div class="hero-content" style="text-align: center; max-width: 900px; padding: 80px 60px;">
+            <div style="width: 120px; height: 1px; background: #FFE88C; margin: 0 auto 2.5rem;"></div>
+            <h2 class="hero-title" style="font-family: 'Elephant', serif; font-size: 3.5rem; font-weight: normal; letter-spacing: 2px; margin-bottom: 1.5rem; color: #FFFAF7;">Servicio de Personalización Femenina</h2>
+            <div style="width: 80px; height: 1px; background: #FFE88C; margin: 0 auto 2rem;"></div>
+            <p class="hero-subtitle" style="font-family: 'Elephant', serif; font-size: 1.3rem; line-height: 1.8; color: #FCE4C8; font-style: italic;">Crea tu perfume exclusivo diseñado especialmente para ti, mujer distinguida y sofisticada</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section style="padding: 100px 0; background: #FFFAF7;">
+        <div class="container" style="max-width: 1400px; padding: 0 60px;">
+            
+            <!-- Indicador de progreso -->
+            <div class="progress-indicator">
+                <div class="progress-step" data-step="1"></div>
+                <div class="progress-step" data-step="2"></div>
+                <div class="progress-step" data-step="3"></div>
+                <div class="progress-step" data-step="4"></div>
+                <div class="progress-step" data-step="5"></div>
+            </div>
+
+            <div class="customization-main" style="display: grid; grid-template-columns: 1fr 400px; gap: 4rem;">
+                <!-- Fases de personalización -->
+                <div class="customization-phases">
+                    <!-- FASE 1: Categoría de Perfume -->
+                    <div class="phase active" data-phase="1">
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <div class="golden-accent"></div>
+                                <p class="phase-number">FASE UNO</p>
+                                <h2 class="phase-title">Selecciona Tu Categoría</h2>
+                                <div class="golden-accent" style="margin-top: 1rem;"></div>
+                                <p class="phase-description">Elige la fragancia que mejor refleje tu personalidad y estilo</p>
+                            </div>
+
+                            <div class="option-grid">
+                                <label class="option-item">
+                                    <input type="radio" name="category" value="clasico" data-price="350" class="option-input" onchange="updateCategory(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Clásico Elegante</h3>
+                                        <p class="option-subtitle">Sofisticación atemporal</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">Desde €350</p>
+                                    </div>
+                                </label>
+
+                                <label class="option-item">
+                                    <input type="radio" name="category" value="floral" data-price="380" class="option-input" onchange="updateCategory(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Floral Sofisticado</h3>
+                                        <p class="option-subtitle">Delicadeza refinada</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">Desde €380</p>
+                                    </div>
+                                </label>
+
+                                <label class="option-item">
+                                    <input type="radio" name="category" value="oriental" data-price="420" class="option-input" onchange="updateCategory(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Oriental Elegante</h3>
+                                        <p class="option-subtitle">Misterio y sofisticación</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">Desde €420</p>
+                                    </div>
+                                </label>
+
+                                <label class="option-item">
+                                    <input type="radio" name="category" value="exclusiva" data-price="500" class="option-input" onchange="updateCategory(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Colección Exclusiva</h3>
+                                        <p class="option-subtitle">Lujo incomparable</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">Desde €500</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Selector de subtipo -->
+                            <div id="subtypeSelector" class="subtype-selector">
+                                <label id="subtypeLabel" style="font-family: 'Elephant', serif; color: #790000; font-size: 1.1rem; display: block; margin-bottom: 1rem;">
+                                    Especifica el subtipo de fragancia:
+                                </label>
+                                <select id="subtypeSelect" onchange="updateSubtype(this)">
+                                    <option value="">Selecciona un subtipo...</option>
+                                </select>
+                            </div>
+
+                            <div class="phase-navigation">
+                                <button class="btn-phase" disabled>Anterior</button>
+                                <button class="btn-phase primary" onclick="nextPhase()" id="nextBtn1" disabled>Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 2: Tamaño y Concentración -->
+                    <div class="phase" data-phase="2">
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <div class="golden-accent"></div>
+                                <p class="phase-number">FASE DOS</p>
+                                <h2 class="phase-title">Tamaño y Concentración</h2>
+                                <div class="golden-accent" style="margin-top: 1rem;"></div>
+                                <p class="phase-description">Define la intensidad y duración de tu fragancia</p>
+                            </div>
+
+                            <div style="margin-bottom: 3rem;">
+                                <h3 style="font-family: 'Elephant', serif; color: #790000; font-size: 1.3rem; margin-bottom: 2rem; font-weight: normal;">Tamaño del envase</h3>
+                                <div class="option-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+                                    <label class="option-item">
+                                        <input type="radio" name="size" value="30" data-price="0" class="option-input" onchange="updateSize(this)">
+                                        <div class="option-card" style="min-height: 120px;">
+                                            <h3 class="option-title">30ml</h3>
+                                            <p class="option-price">Base</p>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="size" value="50" data-price="40" class="option-input" onchange="updateSize(this)">
+                                        <div class="option-card" style="min-height: 120px;">
+                                            <h3 class="option-title">50ml</h3>
+                                            <p class="option-price">+€40</p>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="size" value="75" data-price="90" class="option-input" onchange="updateSize(this)">
+                                        <div class="option-card" style="min-height: 120px;">
+                                            <h3 class="option-title">75ml</h3>
+                                            <p class="option-price">+€90</p>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="size" value="100" data-price="140" class="option-input" onchange="updateSize(this)">
+                                        <div class="option-card" style="min-height: 120px;">
+                                            <h3 class="option-title">100ml</h3>
+                                            <p class="option-price">+€140</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 style="font-family: 'Elephant', serif; color: #790000; font-size: 1.3rem; margin-bottom: 2rem; font-weight: normal;">Concentración</h3>
+                                <div class="option-grid">
+                                    <label class="option-item">
+                                        <input type="radio" name="concentration" value="edt" data-price="0" class="option-input" onchange="updateConcentration(this)">
+                                        <div class="option-card">
+                                            <h3 class="option-title">Eau de Toilette</h3>
+                                            <p class="option-subtitle">5-10% concentración</p>
+                                            <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                                <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                            </div>
+                                            <p class="option-price">Base</p>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="concentration" value="edp" data-price="60" class="option-input" onchange="updateConcentration(this)">
+                                        <div class="option-card">
+                                            <h3 class="option-title">Eau de Parfum</h3>
+                                            <p class="option-subtitle">15-20% concentración</p>
+                                            <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                                <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                            </div>
+                                            <p class="option-price">+€60</p>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="concentration" value="parfum" data-price="120" class="option-input" onchange="updateConcentration(this)">
+                                        <div class="option-card">
+                                            <h3 class="option-title">Parfum</h3>
+                                            <p class="option-subtitle">20-30% concentración</p>
+                                            <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                                <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                            </div>
+                                            <p class="option-price">+€120</p>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="concentration" value="extrait" data-price="200" class="option-input" onchange="updateConcentration(this)">
+                                        <div class="option-card">
+                                            <h3 class="option-title">Extrait de Parfum</h3>
+                                            <p class="option-subtitle">30-40% concentración</p>
+                                            <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                                <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                            </div>
+                                            <p class="option-price">+€200</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="phase-navigation">
+                                <button class="btn-phase" onclick="prevPhase()">Anterior</button>
+                                <button class="btn-phase primary" onclick="nextPhase()" id="nextBtn2" disabled>Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 3: Diseño del Envase -->
+                    <div class="phase" data-phase="3">
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <div class="golden-accent"></div>
+                                <p class="phase-number">FASE TRES</p>
+                                <h2 class="phase-title">Diseño del Envase</h2>
+                                <div class="golden-accent" style="margin-top: 1rem;"></div>
+                                <p class="phase-description">Selecciona el frasco que refleje tu exclusividad</p>
+                            </div>
+
+                            <div class="option-grid">
+                                <label class="option-item">
+                                    <input type="radio" name="bottle" value="standard" data-price="0" class="option-input" onchange="updateBottle(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Estándar Essenza</h3>
+                                        <p class="option-subtitle">Elegancia clásica</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">Incluido</p>
+                                    </div>
+                                </label>
+                                <label class="option-item">
+                                    <input type="radio" name="bottle" value="crystal" data-price="80" class="option-input" onchange="updateBottle(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Cristal Tallado</h3>
+                                        <p class="option-subtitle">Artesanía refinada</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">+€80</p>
+                                    </div>
+                                </label>
+                                <label class="option-item">
+                                    <input type="radio" name="bottle" value="gold" data-price="200" class="option-input" onchange="updateBottle(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Oro 24K</h3>
+                                        <p class="option-subtitle">Lujo supremo</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">+€200</p>
+                                    </div>
+                                </label>
+                                <label class="option-item">
+                                    <input type="radio" name="bottle" value="murano" data-price="350" class="option-input" onchange="updateBottle(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Murano Exclusivo</h3>
+                                        <p class="option-subtitle">Obra maestra italiana</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">+€350</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="phase-navigation">
+                                <button class="btn-phase" onclick="prevPhase()">Anterior</button>
+                                <button class="btn-phase primary" onclick="nextPhase()" id="nextBtn3" disabled>Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 4: Personalización de Etiqueta -->
+                    <div class="phase" data-phase="4">
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <div class="golden-accent"></div>
+                                <p class="phase-number">FASE CUATRO</p>
+                                <h2 class="phase-title">Personalización</h2>
+                                <div class="golden-accent" style="margin-top: 1rem;"></div>
+                                <p class="phase-description">Añade tu toque personal único</p>
+                            </div>
+
+                            <div style="margin-bottom: 3rem;">
+                                <h3 style="font-family: 'Elephant', serif; color: #790000; font-size: 1.3rem; margin-bottom: 2rem; font-weight: normal;">Tipo de etiqueta</h3>
+                                <div class="option-grid">
+                                    <label class="option-item">
+                                        <input type="radio" name="label" value="standard" data-price="0" class="option-input" onchange="updateLabel(this)">
+                                        <div class="option-card">
+                                            <h3 class="option-title">Estándar</h3>
+                                            <p class="option-price">Incluido</p>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="label" value="personalized" data-price="50" class="option-input" onchange="updateLabel(this)">
+                                        <div class="option-card">
+                                            <h3 class="option-title">Con Tu Nombre</h3>
+                                            <p class="option-price">+€50</p>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="label" value="golden" data-price="120" class="option-input" onchange="updateLabel(this)">
+                                        <div class="option-card">
+                                            <h3 class="option-title">Dorada Relieve</h3>
+                                            <p class="option-price">+€120</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 2rem;">
+                                <label style="font-family: 'Elephant', serif; color: #790000; font-size: 1.1rem; display: block; margin-bottom: 1rem;">
+                                    Tu nombre (opcional):
+                                </label>
+                                <input type="text" id="customName" placeholder="Isabella Rossi" style="width: 100%; padding: 1rem; border: 1px solid #B47532; background: #FFFAF7; font-family: 'Elephant', serif; font-size: 1rem;" onchange="updateCustomName(this)">
+                            </div>
+
+                            <div style="margin-bottom: 3rem;">
+                                <h3 style="font-family: 'Elephant', serif; color: #790000; font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: normal;">Color del frasco</h3>
+                                <div class="option-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+                                    <label class="option-item">
+                                        <input type="radio" name="bottleColor" value="transparente" class="option-input" onchange="updateBottleColor(this)" checked>
+                                        <div class="option-card" style="min-height: 100px;">
+                                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%); border: 2px solid #B47532; margin: 0 auto 0.5rem;"></div>
+                                            <h3 class="option-title" style="font-size: 1rem;">Transparente</h3>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="bottleColor" value="ambar" class="option-input" onchange="updateBottleColor(this)">
+                                        <div class="option-card" style="min-height: 100px;">
+                                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #D4A574 0%, #8B6F47 100%); margin: 0 auto 0.5rem;"></div>
+                                            <h3 class="option-title" style="font-size: 1rem;">Ámbar</h3>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="bottleColor" value="negro" class="option-input" onchange="updateBottleColor(this)">
+                                        <div class="option-card" style="min-height: 100px;">
+                                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #2C2C2C 0%, #000000 100%); margin: 0 auto 0.5rem;"></div>
+                                            <h3 class="option-title" style="font-size: 1rem;">Negro</h3>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="bottleColor" value="rosa" class="option-input" onchange="updateBottleColor(this)">
+                                        <div class="option-card" style="min-height: 100px;">
+                                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 100%); margin: 0 auto 0.5rem;"></div>
+                                            <h3 class="option-title" style="font-size: 1rem;">Rosa</h3>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="bottleColor" value="dorado" class="option-input" onchange="updateBottleColor(this)">
+                                        <div class="option-card" style="min-height: 100px;">
+                                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #FFD700 0%, #B47532 100%); margin: 0 auto 0.5rem;"></div>
+                                            <h3 class="option-title" style="font-size: 1rem;">Dorado</h3>
+                                        </div>
+                                    </label>
+                                    <label class="option-item">
+                                        <input type="radio" name="bottleColor" value="azul" class="option-input" onchange="updateBottleColor(this)">
+                                        <div class="option-card" style="min-height: 100px;">
+                                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #4A90E2 0%, #003366 100%); margin: 0 auto 0.5rem;"></div>
+                                            <h3 class="option-title" style="font-size: 1rem;">Azul</h3>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="phase-navigation">
+                                <button class="btn-phase" onclick="prevPhase()">Anterior</button>
+                                <button class="btn-phase primary" onclick="nextPhase()" id="nextBtn4" disabled>Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FASE 5: Empaque -->
+                    <div class="phase" data-phase="5">
+                        <div class="phase-container">
+                            <div class="phase-header">
+                                <div class="golden-accent"></div>
+                                <p class="phase-number">FASE CINCO</p>
+                                <h2 class="phase-title">Empaque de Lujo</h2>
+                                <div class="golden-accent" style="margin-top: 1rem;"></div>
+                                <p class="phase-description">La presentación final de tu fragancia exclusiva</p>
+                            </div>
+
+                            <div class="option-grid">
+                                <label class="option-item">
+                                    <input type="radio" name="packaging" value="standard" data-price="0" class="option-input" onchange="updatePackaging(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Caja Estándar</h3>
+                                        <p class="option-subtitle">Presentación elegante</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">Incluido</p>
+                                    </div>
+                                </label>
+                                <label class="option-item">
+                                    <input type="radio" name="packaging" value="velvet" data-price="60" class="option-input" onchange="updatePackaging(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Terciopelo Premium</h3>
+                                        <p class="option-subtitle">Suavidad distinguida</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">+€60</p>
+                                    </div>
+                                </label>
+                                <label class="option-item">
+                                    <input type="radio" name="packaging" value="leather" data-price="150" class="option-input" onchange="updatePackaging(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Cuero Italiano</h3>
+                                        <p class="option-subtitle">Artesanía exquisita</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">+€150</p>
+                                    </div>
+                                </label>
+                                <label class="option-item">
+                                    <input type="radio" name="packaging" value="jewel" data-price="300" class="option-input" onchange="updatePackaging(this)">
+                                    <div class="option-card">
+                                        <h3 class="option-title">Joyero Personalizado</h3>
+                                        <p class="option-subtitle">Tesoro perpetuo</p>
+                                        <div style="position: relative; width: 40px; height: 1px; background: #FFE88C; margin: 0 auto 0.8rem;">
+                                            <div style="position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 25px; height: 2px; background: #B47532;"></div>
+                                        </div>
+                                        <p class="option-price">+€300</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="phase-navigation">
+                                <button class="btn-phase" onclick="prevPhase()">Anterior</button>
+                                <button class="btn-phase primary" onclick="finishCustomization()" id="nextBtn5" disabled>Finalizar y Solicitar Presupuesto</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de resumen -->
+                <div class="summary-panel">
+                    <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 1.5rem;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+                    </div>
+                    <h3 class="summary-title">Tu Perfume Único</h3>
+                    <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 2rem;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+                    </div>
+
+                    <div id="summaryContent">
+                        <!-- Fragancia -->
+                        <div class="summary-section">
+                            <div class="summary-section-title">Fragancia</div>
+                            <div class="summary-item">
+                                <div class="summary-label">Categoría:</div>
+                                <div class="summary-value" id="sum-category">-</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Subtipo:</div>
+                                <div class="summary-value" id="sum-subtype">-</div>
+                            </div>
+                        </div>
+
+                        <!-- Especificaciones -->
+                        <div class="summary-section">
+                            <div class="summary-section-title">Especificaciones</div>
+                            <div class="summary-item">
+                                <div class="summary-label">Tamaño:</div>
+                                <div class="summary-value" id="sum-size">-</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Concentración:</div>
+                                <div class="summary-value" id="sum-concentration">-</div>
+                            </div>
+                        </div>
+
+                        <!-- Diseño -->
+                        <div class="summary-section">
+                            <div class="summary-section-title">Diseño</div>
+                            <div class="summary-item">
+                                <div class="summary-label">Envase:</div>
+                                <div class="summary-value" id="sum-bottle">-</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Color:</div>
+                                <div class="summary-value" id="sum-color">-</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Etiqueta:</div>
+                                <div class="summary-value" id="sum-label">-</div>
+                            </div>
+                            <div class="summary-item" id="sum-name-item" style="display: none;">
+                                <div class="summary-label">Nombre:</div>
+                                <div class="summary-value" id="sum-name">-</div>
+                            </div>
+                        </div>
+
+                        <!-- Empaque -->
+                        <div class="summary-section">
+                            <div class="summary-section-title">Presentación</div>
+                            <div class="summary-item">
+                                <div class="summary-label">Empaque:</div>
+                                <div class="summary-value" id="sum-packaging">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-total">
+                        <div class="summary-total-label">PRECIO TOTAL ESTIMADO</div>
+                        <div class="summary-total-price" id="totalPrice">€0</div>
+                        <div class="summary-note">*Precio sujeto a confirmación final con nuestro equipo de atención al cliente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ESSENZA</h3>
+                    <p>Belleza italiana de lujo desde 2025</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html#perfumes">Perfumes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicio</h4>
+                    <ul>
+                        <li><a href="personalizacion.html">Personalización</a></li>
+                        <li><a href="mas-tiendas.html">Nuestras Tiendas</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Essenza. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Sistema de configuración
+        const config = {
+            category: null,
+            categoryPrice: 0,
+            subtype: null,
+            size: null,
+            sizePrice: 0,
+            concentration: null,
+            concentrationPrice: 0,
+            bottle: null,
+            bottlePrice: 0,
+            bottleColor: 'transparente',
+            label: null,
+            labelPrice: 0,
+            customName: '',
+            packaging: null,
+            packagingPrice: 0
+        };
+
+        let currentPhase = 1;
+
+        // Subtipos por categoría
+        const subtypes = {
+            clasico: ['Chypre', 'Cuero', 'Fougère', 'Amaderado'],
+            floral: ['Rosa', 'Jazmín', 'Violeta', 'Lirio', 'Peonía'],
+            oriental: ['Ámbar', 'Vainilla', 'Incienso', 'Especiado', 'Oud'],
+            exclusiva: ['Signature Privée', 'Haute Couture', 'Collector\'s Edition']
+        };
+
+        // Etiqueta dinámica para el subtipo según categoría
+        const subtypeLabelByCategory = {
+            clasico: 'Elige el estilo clásico:',
+            floral: 'Elige la familia floral:',
+            oriental: 'Elige el acorde oriental:',
+            exclusiva: 'Elige la serie exclusiva:'
+        };
+
+        const categoryLabels = {
+            clasico: 'Clásico Elegante',
+            floral: 'Floral Sofisticado',
+            oriental: 'Oriental Elegante',
+            exclusiva: 'Colección Exclusiva'
+        };
+
+        const sizeLabels = { '30': '30ml', '50': '50ml', '75': '75ml', '100': '100ml' };
+        const concentrationLabels = {
+            edt: 'Eau de Toilette',
+            edp: 'Eau de Parfum',
+            parfum: 'Parfum',
+            extrait: 'Extrait de Parfum'
+        };
+        const bottleLabels = {
+            standard: 'Estándar Essenza',
+            crystal: 'Cristal Tallado',
+            gold: 'Oro 24K',
+            murano: 'Murano Exclusivo'
+        };
+        const bottleColorLabels = {
+            transparente: 'Transparente',
+            ambar: 'Ámbar',
+            negro: 'Negro',
+            rosa: 'Rosa',
+            dorado: 'Dorado',
+            azul: 'Azul'
+        };
+        const labelLabels = {
+            standard: 'Estándar',
+            personalized: 'Personalizada',
+            golden: 'Dorada Relieve'
+        };
+        const packagingLabels = {
+            standard: 'Caja Estándar',
+            velvet: 'Terciopelo Premium',
+            leather: 'Cuero Italiano',
+            jewel: 'Joyero Personalizado'
+        };
+
+        function updateCategory(el) {
+            config.category = el.value;
+            config.categoryPrice = parseInt(el.dataset.price);
+            
+            // Mostrar selector de subtipo
+            const selector = document.getElementById('subtypeSelector');
+            const select = document.getElementById('subtypeSelect');
+            selector.classList.add('visible');
+            
+            // Actualizar etiqueta dinámica
+            const subtypeLabel = document.getElementById('subtypeLabel');
+            if (subtypeLabel && subtypeLabelByCategory[el.value]) {
+                subtypeLabel.textContent = subtypeLabelByCategory[el.value];
+            }
+
+            // Poblar opciones
+            select.innerHTML = '<option value="">Selecciona un subtipo...</option>';
+            subtypes[el.value].forEach(sub => {
+                const option = document.createElement('option');
+                option.value = sub;
+                option.textContent = sub;
+                select.appendChild(option);
+            });
+            
+            config.subtype = null;
+            document.getElementById('nextBtn1').disabled = true;
+            updateSummary();
+        }
+
+        function updateSubtype(el) {
+            config.subtype = el.value;
+            document.getElementById('nextBtn1').disabled = !el.value;
+            updateSummary();
+        }
+
+        function updateSize(el) {
+            config.size = el.value;
+            config.sizePrice = parseInt(el.dataset.price);
+            updateButton(2);
+            updateSummary();
+        }
+
+        function updateConcentration(el) {
+            config.concentration = el.value;
+            config.concentrationPrice = parseInt(el.dataset.price);
+            updateButton(2);
+            updateSummary();
+        }
+
+        function updateBottle(el) {
+            config.bottle = el.value;
+            config.bottlePrice = parseInt(el.dataset.price);
+            updateButton(3);
+            updateSummary();
+        }
+
+        function updateBottleColor(el) {
+            config.bottleColor = el.value;
+            updateSummary();
+        }
+
+        function updateLabel(el) {
+            config.label = el.value;
+            config.labelPrice = parseInt(el.dataset.price);
+            updateButton(4);
+            updateSummary();
+        }
+
+        function updateCustomName(el) {
+            config.customName = el.value;
+            updateSummary();
+        }
+
+        function updatePackaging(el) {
+            config.packaging = el.value;
+            config.packagingPrice = parseInt(el.dataset.price);
+            updateButton(5);
+            updateSummary();
+        }
+
+        function updateButton(phase) {
+            const btn = document.getElementById(`nextBtn${phase}`);
+            if (phase === 2) {
+                btn.disabled = !(config.size && config.concentration);
+            } else if (phase === 3) {
+                btn.disabled = !config.bottle;
+            } else if (phase === 4) {
+                btn.disabled = !config.label;
+            } else if (phase === 5) {
+                btn.disabled = !config.packaging;
+            }
+        }
+
+        function updateSummary() {
+            document.getElementById('sum-category').textContent = config.category ? categoryLabels[config.category] : '-';
+            document.getElementById('sum-subtype').textContent = config.subtype || '-';
+            document.getElementById('sum-size').textContent = config.size ? sizeLabels[config.size] : '-';
+            document.getElementById('sum-concentration').textContent = config.concentration ? concentrationLabels[config.concentration] : '-';
+            document.getElementById('sum-bottle').textContent = config.bottle ? bottleLabels[config.bottle] : '-';
+            document.getElementById('sum-color').textContent = bottleColorLabels[config.bottleColor];
+            document.getElementById('sum-label').textContent = config.label ? labelLabels[config.label] : '-';
+            
+            // Mostrar nombre solo si existe
+            if (config.customName) {
+                document.getElementById('sum-name-item').style.display = 'flex';
+                document.getElementById('sum-name').textContent = config.customName;
+            } else {
+                document.getElementById('sum-name-item').style.display = 'none';
+            }
+            
+            document.getElementById('sum-packaging').textContent = config.packaging ? packagingLabels[config.packaging] : '-';
+
+            const total = config.categoryPrice + config.sizePrice + config.concentrationPrice + config.bottlePrice + config.labelPrice + config.packagingPrice;
+            document.getElementById('totalPrice').textContent = '€' + total;
+        }
+
+        function nextPhase() {
+            document.querySelector(`[data-phase="${currentPhase}"]`).classList.remove('active');
+            currentPhase++;
+            document.querySelector(`[data-phase="${currentPhase}"]`).classList.add('active');
+            updateProgress();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+
+        function prevPhase() {
+            document.querySelector(`[data-phase="${currentPhase}"]`).classList.remove('active');
+            currentPhase--;
+            document.querySelector(`[data-phase="${currentPhase}"]`).classList.add('active');
+            updateProgress();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+
+        function updateProgress() {
+            document.querySelectorAll('.progress-step').forEach((step, i) => {
+                const stepNum = i + 1;
+                if (stepNum < currentPhase) {
+                    step.classList.add('completed');
+                    step.classList.remove('active');
+                } else if (stepNum === currentPhase) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.remove('active', 'completed');
+                }
+            });
+        }
+
+        function finishCustomization() {
+            // Generar imagen del perfume personalizado
+            generatePerfumeImage();
+        }
+
+        function generatePerfumeImage() {
+            // Crear modal con imagen
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 2rem;';
+            
+            const content = document.createElement('div');
+            content.style.cssText = 'background: #FFFAF7; padding: 3rem; max-width: 900px; width: 100%; text-align: center; border: 2px solid #B47532;';
+            
+            content.innerHTML = `
+                <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 1.5rem;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #B47532;"></div>
+                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+                </div>
+                <h2 style="font-family: 'Elephant', serif; color: #790000; font-size: 2.2rem; margin-bottom: 1rem; font-weight: normal; letter-spacing: 1px;">¡Tu Perfume Exclusivo!</h2>
+                <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 2rem;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+                </div>
+                <div id="perfumeCanvas" style="margin: 2rem auto; position: relative; width: 400px; height: 500px;">
+                    ${generatePerfumeBottleSVG()}
+                </div>
+                <div style="margin-top: 2rem; padding: 2rem; background: #FCE4C8; border-left: 4px solid #790000;">
+                    <h3 style="font-family: 'Elephant', serif; color: #790000; font-size: 1.3rem; margin-bottom: 1rem; font-weight: normal;">Resumen de tu pedido</h3>
+                    <div style="text-align: left; font-family: 'Elephant', serif; color: #501010; line-height: 2;">
+                        <p><strong>Fragancia:</strong> ${categoryLabels[config.category]} - ${config.subtype}</p>
+                        <p><strong>Tamaño:</strong> ${sizeLabels[config.size]} | <strong>Concentración:</strong> ${concentrationLabels[config.concentration]}</p>
+                        <p><strong>Envase:</strong> ${bottleLabels[config.bottle]} (${bottleColorLabels[config.bottleColor]})</p>
+                        <p><strong>Etiqueta:</strong> ${labelLabels[config.label]}${config.customName ? ' - ' + config.customName : ''}</p>
+                        <p><strong>Empaque:</strong> ${packagingLabels[config.packaging]}</p>
+                        <p style="margin-top: 1rem; font-size: 1.3rem; color: #790000;"><strong>Total:</strong> €${config.categoryPrice + config.sizePrice + config.concentrationPrice + config.bottlePrice + config.labelPrice + config.packagingPrice}</p>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <button onclick="closeModal()" style="background: #790000; color: #FFFAF7; border: none; padding: 1rem 3rem; font-family: 'Elephant', serif; font-size: 1.1rem; cursor: pointer; margin-right: 1rem;">Cerrar</button>
+                    <button onclick="contactUs()" style="background: #B47532; color: #FFFAF7; border: none; padding: 1rem 3rem; font-family: 'Elephant', serif; font-size: 1.1rem; cursor: pointer;">Solicitar Presupuesto</button>
+                </div>
+            `;
+            
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            modal.id = 'perfumeModal';
+        }
+
+        function generatePerfumeBottleSVG() {
+            // Mapeo de colores para el SVG
+            const colorMap = {
+                transparente: { glass: 'rgba(240, 240, 240, 0.3)', liquid: 'rgba(255, 215, 0, 0.3)' },
+                ambar: { glass: 'rgba(212, 165, 116, 0.6)', liquid: 'rgba(139, 111, 71, 0.4)' },
+                negro: { glass: 'rgba(44, 44, 44, 0.9)', liquid: 'rgba(0, 0, 0, 0.5)' },
+                rosa: { glass: 'rgba(255, 182, 193, 0.6)', liquid: 'rgba(255, 228, 225, 0.4)' },
+                dorado: { glass: 'rgba(255, 215, 0, 0.7)', liquid: 'rgba(180, 117, 50, 0.5)' },
+                azul: { glass: 'rgba(74, 144, 226, 0.6)', liquid: 'rgba(0, 51, 102, 0.4)' }
+            };
+            
+            const colors = colorMap[config.bottleColor];
+            const bottleShape = config.bottle === 'murano' ? 'ornate' : config.bottle === 'gold' ? 'luxury' : 'classic';
+            
+            let svg = `
+                <svg width="400" height="500" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Sombra -->
+                    <ellipse cx="200" cy="480" rx="80" ry="15" fill="rgba(0,0,0,0.2)" />
+                    
+                    <!-- Cuerpo del frasco -->
+                    <defs>
+                        <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:${colors.glass};stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:rgba(255,255,255,0.4);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:${colors.glass};stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:${colors.liquid};stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:${colors.liquid};stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+            `;
+            
+            if (bottleShape === 'luxury') {
+                svg += `
+                    <!-- Frasco lujoso -->
+                    <rect x="130" y="250" width="140" height="200" rx="10" fill="url(#glassGrad)" stroke="#B47532" stroke-width="2"/>
+                    <rect x="135" y="320" width="130" height="125" rx="5" fill="url(#liquidGrad)" />
+                    <rect x="160" y="180" width="80" height="75" rx="5" fill="url(#glassGrad)" stroke="#B47532" stroke-width="2"/>
+                    <rect x="180" y="120" width="40" height="65" rx="20" fill="url(#glassGrad)" stroke="#B47532" stroke-width="2"/>
+                    <rect x="175" y="70" width="50" height="55" rx="25" fill="#B47532" />
+                `;
+            } else if (bottleShape === 'ornate') {
+                svg += `
+                    <!-- Frasco ornamentado Murano -->
+                    <path d="M 150 450 Q 140 400 145 350 L 145 280 Q 145 260 160 250 L 160 200 Q 160 190 175 185 L 175 130 Q 175 120 185 115 L 185 80 Q 185 65 200 65 Q 215 65 215 80 L 215 115 Q 215 120 225 130 L 225 185 Q 225 190 240 200 L 240 250 Q 240 260 255 280 L 255 350 Q 260 400 250 450 Z" fill="url(#glassGrad)" stroke="#B47532" stroke-width="2"/>
+                    <path d="M 155 420 Q 150 380 152 340 L 152 290 L 248 290 L 248 340 Q 250 380 245 420 Z" fill="url(#liquidGrad)" />
+                    <circle cx="200" cy="75" r="30" fill="#B47532" />
+                    <circle cx="200" cy="75" r="20" fill="url(#glassGrad)" />
+                `;
+            } else {
+                svg += `
+                    <!-- Frasco clásico -->
+                    <rect x="140" y="260" width="120" height="190" rx="8" fill="url(#glassGrad)" stroke="#B47532" stroke-width="2"/>
+                    <rect x="145" y="330" width="110" height="115" rx="5" fill="url(#liquidGrad)" />
+                    <rect x="165" y="200" width="70" height="65" rx="5" fill="url(#glassGrad)" stroke="#B47532" stroke-width="2"/>
+                    <rect x="180" y="140" width="40" height="65" rx="20" fill="url(#glassGrad)" stroke="#B47532" stroke-width="2"/>
+                    <rect x="175" y="90" width="50" height="55" rx="25" fill="#790000" />
+                `;
+            }
+            
+            // Etiqueta
+            const labelY = 350;
+            svg += `
+                <rect x="150" y="${labelY}" width="100" height="50" rx="3" fill="#FFFAF7" stroke="#B47532" stroke-width="1"/>
+                <text x="200" y="${labelY + 20}" font-family="serif" font-size="14" fill="#790000" text-anchor="middle" font-weight="bold">ESSENZA</text>
+                <text x="200" y="${labelY + 38}" font-family="serif" font-size="10" fill="#501010" text-anchor="middle">${config.subtype || ''}</text>
+            `;
+            
+            // Nombre personalizado si existe
+            if (config.customName) {
+                svg += `<text x="200" y="${labelY + 52}" font-family="serif" font-size="8" fill="#B47532" text-anchor="middle" font-style="italic">${config.customName}</text>`;
+            }
+            
+            svg += `
+                    <!-- Brillos -->
+                    <ellipse cx="175" cy="300" rx="15" ry="40" fill="rgba(255,255,255,0.4)" />
+                    <ellipse cx="168" cy="320" rx="8" ry="20" fill="rgba(255,255,255,0.6)" />
+                </svg>
+            `;
+            
+            return svg;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('perfumeModal');
+            if (modal) modal.remove();
+        }
+
+        function contactUs() {
+            closeModal();
+            window.location.href = 'contacto.html';
+        }
+
+        function finishCustomization_old() {
+            alert('¡Gracias! Tu configuración ha sido guardada. En breve un asesor se pondrá en contacto contigo para finalizar tu perfume exclusivo.\n\nTotal estimado: €' + (config.categoryPrice + config.sizePrice + config.concentrationPrice + config.bottlePrice + config.labelPrice + config.packagingPrice));
+        }
+
+        // Inicializar progreso
+        updateProgress();
+    </script>
+</body>
+</html>

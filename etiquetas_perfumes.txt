@@ -1,0 +1,62 @@
+==============================
+ETIQUETAS DE PERFUMES — ESSENZA
+Formato: Texto listo para impresión (sin cursivas)
+Estructura: Frontal + Trasera por perfume
+==============================
+
+---
+FRONTAL — ROSA DI MILANO
+Marca: ESSENZA
+Nombre: Rosa di Milano
+Edición: Signature
+Notas: Rosa italiana · Jazmín · Sándalo
+Concentración: Eau de Parfum (EDP)
+Volumen: 50 ml / 100 ml
+Origen: Hecho en Italia
+
+TRASERA — ROSA DI MILANO
+Descripción: Una interpretación contemporánea de la rosa clásica, elegante y atemporal.
+Ingredientes (INCI orientativo): Alcohol Denat., Aqua (Water), Parfum (Fragrance), Linalool, Citronellol, Geraniol, Limonene, Citral, Coumarin.
+Modo de uso: Vaporizar a 15–20 cm sobre piel limpia. Evitar rostro y zonas sensibles.
+Advertencias: Inflamable. Uso externo. Mantener fuera del alcance de los niños. Evitar contacto con ojos. Conservar alejado del calor.
+Lote y fecha: Batch RM-XXX • MM/AAAA
+Fabricado por: Essenza S.r.l., Via Montenapoleone 8, Milano, Italia
+Contacto: essenza.example • Atención al cliente
+
+---
+FRONTAL — AMBRA VENEZIANA
+Marca: ESSENZA
+Nombre: Ambra Veneziana
+Edición: Noches de Serenidad
+Notas: Ámbar · Vainilla · Especias orientales
+Concentración: Eau de Parfum (EDP)
+Volumen: 50 ml / 100 ml
+Origen: Hecho en Italia
+
+TRASERA — AMBRA VENEZIANA
+Descripción: Cálida y envolvente; una estela magnética para veladas inolvidables.
+Ingredientes (INCI orientativo): Alcohol Denat., Aqua (Water), Parfum (Fragrance), Vanillin, Benzyl Cinnamate, Cinnamal, Coumarin, Limonene, Linalool, Benzyl Benzoate.
+Modo de uso: Vaporizar sobre puntos de pulso. No aplicar sobre piel irritada.
+Advertencias: Inflamable. Uso externo. Mantener fuera del alcance de los niños. Evitar contacto con ojos. Conservar alejado del calor.
+Lote y fecha: Batch AV-XXX • MM/AAAA
+Fabricado por: Essenza S.r.l., Via Montenapoleone 8, Milano, Italia
+Contacto: essenza.example • Atención al cliente
+
+---
+FRONTAL — FIORI DI TOSCANA
+Marca: ESSENZA
+Nombre: Fiori di Toscana
+Edición: Fresco Mediterráneo
+Notas: Lavanda · Bergamota · Cedro
+Concentración: Eau de Parfum (EDP)
+Volumen: 50 ml / 100 ml
+Origen: Hecho en Italia
+
+TRASERA — FIORI DI TOSCANA
+Descripción: Fresca y refinada; perfecta para el día a día con carácter sofisticado.
+Ingredientes (INCI orientativo): Alcohol Denat., Aqua (Water), Parfum (Fragrance), Limonene, Linalool, Hydroxycitronellal, Citral, Geraniol.
+Modo de uso: Pulverizar en cuello y muñecas. Reaplicar según preferencia.
+Advertencias: Inflamable. Uso externo. Mantener fuera del alcance de los niños. Evitar contacto con ojos. Conservar alejado del calor.
+Lote y fecha: Batch FT-XXX • MM/AAAA
+Fabricado por: Essenza S.r.l., Via Montenapoleone 8, Milano, Italia
+Contacto: essenza.example • Atención al cliente

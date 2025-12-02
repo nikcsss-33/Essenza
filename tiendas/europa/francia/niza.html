@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essenza Niza | Boutique Promenade des Anglais</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .map-container {
+            height: 400px;
+            width: 100%;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .store-location {
+            background: rgba(121, 0, 0, 0.1);
+            border: 2px solid #790000;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-logo">
+                    <h1 class="logo">ESSENZA</h1>
+                    <p class="logo-subtitle">Bellezza Italiana</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../../index.html" class="nav-link">← Volver al Inicio</a></li>
+                    <li><a href="../../index.html#tiendas" class="nav-link">Otras Tiendas</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Store Hero -->
+    <section class="hero" style="background: #790000; min-height: 50vh;">
+        <div class="hero-content">
+            <div style="position: relative; width: 100%; height: 8px; margin: 0 auto 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <h2 class="hero-title">Boutique Niza</h2>
+            <div style="position: relative; width: 100%; height: 8px; margin: 1.5rem auto;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: #FFE88C;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: #B47532;"></div>
+            </div>
+            <p class="hero-subtitle">El Sol de la Costa Azul</p>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Store Details -->
+    <section class="about" style="padding: 100px 0;">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Niza - La Perla de la Costa Azul</h2>
+                <p class="about-text" style="text-align: left; max-width: 100%;">
+                    En el corazón de la Promenade des Anglais, nuestra boutique de Niza ofrece una experiencia única
+                    que combina el glamour de la Riviera Francesa con la sofisticación italiana de Essenza. Con vistas
+                    espectaculares al Mediterráneo y rodeada de palmeras y arquitectura Belle Époque, esta tienda
+                    representa el lujo despreocupado de la Côte d'Azur.
+                </p>
+
+                <div class="store-location">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación Exacta</h3>
+                    <div id="map" class="map-container"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Ubicación</h3>
+                        <p style="color: #501010;">
+                            <strong>Dirección:</strong> Promenade des Anglais, 25<br>
+                            06000 Nice, Francia<br>
+                            <strong style="color: var(--color-accent);">Teléfono:</strong> <span style="color: var(--color-accent);">+33 4 9388 9900</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Horario</h3>
+                        <p style="color: #501010;">
+                            Lunes - Domingo: 10:00 - 20:00<br>
+                            Verano: Hasta 22:00<br>
+                            Invierno: 10:00 - 19:00
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Servicios Exclusivos</h3>
+                        <ul style="color: #501010; list-style: none; padding-left: 0;">
+                            <li>Servicio de yacht privado</li>
+                            <li>Asesoría en francés e italiano</li>
+                            <li>Terraza VIP con vistas al mar</li>
+                            <li>Entrega por limusina</li>
+                            <li>Fragancias inspiradas en la Riviera</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #FCE4C8; padding: 2.5rem; border-left: 4px solid #790000; margin-top: 3rem;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1rem;">Experiencia de la Costa Azul</h3>
+                    <p style="color: #501010; line-height: 1.8;">
+                        La boutique de Niza captura la esencia misma de la Costa Azul: soleada, sofisticada y llena de glamour.
+                        Nuestros perfumistas han creado una colección exclusiva inspirada en el Mediterráneo, con notas
+                        cítricas de los limoneros de Menton, jazmín de Grasse y lavanda de Provenza.
+                    </p>
+                    <p style="color: #501010; line-height: 1.8; margin-top: 1rem;">
+                        La colección "Côte d'Azur" incluye fragancias que evocan los momentos más mágicos de la Riviera:
+                        amaneceres dorados, tardes en yate, noches estrelladas en Cannes. Cada perfume cuenta una historia
+                        de lujo y sofisticación mediterránea.
+                    </p>
+                </div>
+
+                <div style="margin-top: 3rem; text-align: center;">
+                    <h3 style="font-family: var(--font-primary); color: var(--color-secondary); margin-bottom: 1.5rem;">Cómo Llegar</h3>
+                    <p style="color: #501010; margin-bottom: 1rem;">
+                        <strong>Tranvía:</strong> Línea 2 - Parada Promenade des Anglais<br>
+                        <strong>Autobús:</strong> Líneas 8, 9, 10 - Parada Hôtel Negresco<br>
+                        <strong>Aeropuerto:</strong> Niza Côte d'Azur - 15 min en taxi
+                    </p>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="../../index.html#contacto" class="btn btn-primary">Reservar Cita</a>
+                    <a href="../../index.html#productos" class="btn btn-secondary" style="margin-left: 1rem;">Ver Productos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Essenza. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize map centered on Nice
+        const map = L.map('map').setView([43.7102, 7.2620], 15);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add marker for the store
+        const marker = L.marker([43.6954, 7.2719]).addTo(map);
+        marker.bindPopup('<b>Essenza Niza</b><br>Promenade des Anglais, 25<br>Niza, Francia').openPopup();
+
+        // Add circle to show approximate location
+        const circle = L.circle([43.6954, 7.2719], {
+            color: '#790000',
+            fillColor: '#b47532',
+            fillOpacity: 0.2,
+            radius: 100
+        }).addTo(map);
+    </script>
+    <script src="../../script.js"></script>
+</body>
+</html>

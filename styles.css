@@ -366,6 +366,177 @@ p, li {
     opacity: 0.3;
 }
 
+/* ===========================
+   HERO LANDING STYLE
+   =========================== */
+
+.hero-landing {
+    min-height: 100vh;
+    margin-top: 80px;
+    background: radial-gradient(ellipse at center, #8B1A1A 0%, #6B0F0F 40%, #4A0A0A 100%);
+    overflow: hidden;
+    border-bottom: none;
+}
+
+.hero-landing::before {
+    display: none;
+}
+
+/* Gold diagonal corner decorations */
+.corner-decoration {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    z-index: 5;
+}
+
+.corner-top-left {
+    top: 0;
+    left: 0;
+}
+
+.corner-top-left::before,
+.corner-top-left::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(135deg, #D4AF37 0%, #C4A052 50%, #B8860B 100%);
+    transform-origin: left top;
+}
+
+.corner-top-left::before {
+    width: 180px;
+    height: 4px;
+    top: 50px;
+    left: -30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.corner-top-left::after {
+    width: 180px;
+    height: 4px;
+    top: 65px;
+    left: -30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.corner-bottom-right {
+    bottom: 0;
+    right: 0;
+}
+
+.corner-bottom-right::before,
+.corner-bottom-right::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(135deg, #D4AF37 0%, #C4A052 50%, #B8860B 100%);
+    transform-origin: right bottom;
+}
+
+.corner-bottom-right::before {
+    width: 180px;
+    height: 4px;
+    bottom: 50px;
+    right: -30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.corner-bottom-right::after {
+    width: 180px;
+    height: 4px;
+    bottom: 65px;
+    right: -30px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.hero-landing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 10;
+    padding: 2rem;
+}
+
+.hero-brand-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 900;
+    color: #FFFFFF;
+    letter-spacing: 0.1em;
+    text-shadow: 4px 4px 0px #4A0A0A, 
+                 8px 8px 0px rgba(74, 10, 10, 0.5);
+    margin-bottom: 3rem;
+    line-height: 1;
+}
+
+.hero-logo-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: #8B1A1A;
+    border: 5px solid #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 3px #8B1A1A;
+}
+
+.logo-inner {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon {
+    width: 140px;
+    height: 140px;
+}
+
+@media (max-width: 768px) {
+    .hero-landing {
+        min-height: calc(100vh - 80px);
+    }
+    
+    .hero-brand-title {
+        font-size: clamp(3rem, 10vw, 6rem);
+        letter-spacing: 0.05em;
+    }
+    
+    .hero-logo-circle {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .logo-inner {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .logo-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .corner-decoration {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .corner-top-left::before,
+    .corner-top-left::after,
+    .corner-bottom-right::before,
+    .corner-bottom-right::after {
+        width: 120px;
+    }
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
